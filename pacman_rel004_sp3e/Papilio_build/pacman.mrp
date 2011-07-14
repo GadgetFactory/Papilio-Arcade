@@ -1,0 +1,356 @@
+Release 11.1 Map L.33 (nt64)
+Xilinx Mapping Report File for Design 'pacman'
+
+Design Information
+------------------
+Command Line   : map -pr b -o pacman.ncd pacman.ngd pacman.pcf 
+Target Device  : xc3s500e
+Target Package : fg320
+Target Speed   : -4
+Mapper Version : spartan3e -- $Revision: 1.51 $
+Mapped Date    : Mon Aug 16 18:00:50 2010
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:   17
+Logic Utilization:
+  Number of Slice Flip Flops:           442 out of   9,312    4%
+  Number of 4 input LUTs:             2,383 out of   9,312   25%
+Logic Distribution:
+  Number of occupied Slices:          1,404 out of   4,656   30%
+    Number of Slices containing only related logic:   1,404 out of   1,404 100%
+    Number of Slices containing unrelated logic:          0 out of   1,404   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:       2,481 out of   9,312   26%
+    Number used as logic:             2,287
+    Number used as a route-thru:         98
+    Number used for Dual Port RAMs:      96
+      (Two LUTs used per Dual Port RAM)
+
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+  Number of bonded IOBs:                 72 out of     232   31%
+    IOB Flip Flops:                      11
+  Number of RAMB16s:                     19 out of      20   95%
+  Number of BUFGMUXs:                     2 out of      24    8%
+  Number of DCMs:                         1 out of       4   25%
+
+Average Fanout of Non-Clock Nets:                3.89
+
+Peak Memory Usage:  290 MB
+Total REAL time to MAP completion:  37 secs 
+Total CPU time to MAP completion:   28 secs 
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Modular Design Summary
+Section 11 - Timing Report
+Section 12 - Configuration String Information
+Section 13 - Control Set Information
+Section 14 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Security:42 - Your license support version '2010.04' for WebPack expires
+in -108 days.
+WARNING:LIT:243 - Logical network B_STRATAFLASH_DATA<0>_IBUF has no load.
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 45
+   more times for the following (max. 5 shown):
+   B_STRATAFLASH_DATA<1>_IBUF,
+   B_STRATAFLASH_DATA<2>_IBUF,
+   B_STRATAFLASH_DATA<3>_IBUF,
+   B_STRATAFLASH_DATA<4>_IBUF,
+   B_STRATAFLASH_DATA<5>_IBUF
+   To see the details of these warning messages, please use the -detail switch.
+WARNING:MapLib:864 - The following Virtex Blockram(s) is/are being retargeted to
+   Virtex2 Blockram(s). This will waste 75% of Virtex2 Blockram capacity. To
+   obtain better utilization, Please re-run memory generator to retarget to
+   Virtex2 Blockram modules:
+   RAMB4_S8_S8 symbol "u_dblsacn/u_ram_a" (output
+   signal=u_dblsacn/rgb_out_a<7>),
+   RAMB4_S8_S8 symbol "u_dblsacn/u_ram_b" (output signal=u_dblsacn/rgb_out_b<7>)
+WARNING:Pack:1237 - The register u_dac/DACout_q failed to join the output side
+   of an I/O component. Symbol u_dac/DACout_q is not under the same hierarchy
+   region as symbol O_AUDIO_L_OBUF. There are three ways to fix the problem:
+   1. Put both symbols under the same hierarchy region and process the design.
+   If the I/O buffer is being inferred by the synthesis tool, it is suggested to
+   code I/O registers on the top level of code. If this can not be done, it is
+   suggested to instantiate the proper I/O buffer in the lower level of code and
+   disable I/O buffer inference for that port in the design.
+   2. Remove KEEP_HIERARCHY constraint or add KEEP_HIERARCHY = FALSE to block
+   u_dac in the UCF file.
+   3. Run map with the option -ignore_keep_hierarchy (TCL/ProjNav command:
+   process set "Allow Logic Optimization Across Hierarchy" TRUE). This option
+   will dissolve all hierarchy in the design.
+
+WARNING:Pack:1237 - The register u_dac/DACout_q failed to join the output side
+   of an I/O component. Symbol u_dac/DACout_q is not under the same hierarchy
+   region as symbol O_AUDIO_R_OBUF. There are three ways to fix the problem:
+   1. Put both symbols under the same hierarchy region and process the design.
+   If the I/O buffer is being inferred by the synthesis tool, it is suggested to
+   code I/O registers on the top level of code. If this can not be done, it is
+   suggested to instantiate the proper I/O buffer in the lower level of code and
+   disable I/O buffer inference for that port in the design.
+   2. Remove KEEP_HIERARCHY constraint or add KEEP_HIERARCHY = FALSE to block
+   u_dac in the UCF file.
+   3. Run map with the option -ignore_keep_hierarchy (TCL/ProjNav command:
+   process set "Allow Logic Optimization Across Hierarchy" TRUE). This option
+   will dissolve all hierarchy in the design.
+
+WARNING:Pack:266 - The function generator u_cpu/u0/alu/Q_t_2_mux00001 failed to
+   merge with F5 multiplexer u_cpu/u0/alu/Mmux_Q_t_0_mux0002_2_f7_4_f5_0_f5. 
+   There is a conflict for the FXMUX.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:266 - The function generator u_cpu/u0/alu/Q_t_3_mux00001 failed to
+   merge with F5 multiplexer u_cpu/u0/alu/Mmux_Q_t_0_mux0002_2_f7_4_f5_1_f5. 
+   There is a conflict for the FXMUX.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:266 - The function generator u_cpu/u0/alu/Q_t_0_mux00001 failed to
+   merge with F5 multiplexer u_cpu/u0/alu/Mmux_Q_t_0_mux0002_4_f5_f5.  There is
+   a conflict for the FXMUX.  The design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator u_cpu/u0/alu/Q_t_1_mux00001 failed to
+   merge with F5 multiplexer u_cpu/u0/alu/Mmux_Q_t_0_mux0002_2_f7_4_f5_f5. 
+   There is a conflict for the FXMUX.  The design will exhibit suboptimal
+   timing.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<0>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<1>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<2>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<3>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<4>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<5>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<6>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <B_STRATAFLASH_DATA<7>_IBUF> is
+   incomplete. The signal does not drive any load pins in the design.
+
+Section 3 - Informational
+-------------------------
+INFO:Security:54 - 'xc3s500e' is a WebPack part.
+INFO:MapLib:562 - No environment variables are currently set.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+  31 block(s) optimized away
+   8 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "u_audio/audio_rom_1m/DATA<4>" is sourceless and has been removed.
+The signal "u_audio/audio_rom_1m/DATA<5>" is sourceless and has been removed.
+The signal "u_audio/audio_rom_1m/DATA<6>" is sourceless and has been removed.
+The signal "u_audio/audio_rom_1m/DATA<7>" is sourceless and has been removed.
+The signal "u_cpu/A<15>" is sourceless and has been removed.
+The signal "u_cpu/BUSAK_n" is sourceless and has been removed.
+The signal "u_cpu/HALT_n" is sourceless and has been removed.
+The signal "u_cpu/u0/Regs/N0" is sourceless and has been removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+VCC 		XST_VCC
+GND 		u_audio/XST_GND
+VCC 		u_audio/XST_VCC
+GND 		u_audio/audio_rom_1m/XST_GND
+GND 		u_audio/u_volume_mul/XST_GND
+GND 		u_clocks/XST_GND
+VCC 		u_clocks/XST_VCC
+GND 		u_cpu/XST_GND
+GND 		u_cpu/u0/XST_GND
+VCC 		u_cpu/u0/XST_VCC
+GND 		u_cpu/u0/Regs/XST_GND
+GND 		u_cpu/u0/alu/XST_GND
+VCC 		u_cpu/u0/alu/XST_VCC
+GND 		u_cpu/u0/mcode/XST_GND
+VCC 		u_cpu/u0/mcode/XST_VCC
+GND 		u_dac/XST_GND
+GND 		u_dblsacn/XST_GND
+VCC 		u_dblsacn/XST_VCC
+GND 		u_debounce/XST_GND
+VCC 		u_debounce/XST_VCC
+GND 		u_program_rom/u_6e/XST_GND
+GND 		u_program_rom/u_6f/XST_GND
+GND 		u_program_rom/u_6h/XST_GND
+GND 		u_program_rom/u_6j/XST_GND
+GND 		u_rams/XST_GND
+GND 		u_video/XST_GND
+VCC 		u_video/XST_VCC
+GND 		u_video/char_rom_5e/XST_GND
+GND 		u_video/char_rom_5f/XST_GND
+GND 		u_video/col_rom_4a/XST_GND
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| B_STRATAFLASH_DATA<0>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| B_STRATAFLASH_DATA<1>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| B_STRATAFLASH_DATA<2>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| B_STRATAFLASH_DATA<3>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| B_STRATAFLASH_DATA<4>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| B_STRATAFLASH_DATA<5>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| B_STRATAFLASH_DATA<6>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| B_STRATAFLASH_DATA<7>              | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| I_BUTTON<0>                        | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLDOWN | 0 / 0    |
+| I_BUTTON<1>                        | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLDOWN | 0 / 0    |
+| I_BUTTON<2>                        | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLDOWN | 0 / 0    |
+| I_BUTTON<3>                        | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLDOWN | 0 / 0    |
+| I_CLK_REF                          | IBUF             | INPUT     | LVCMOS33             |       |          |      |              |          | 0 / 0    |
+| I_RESET                            | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLDOWN | 0 / 0    |
+| I_SW<0>                            | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLUP   | 0 / 0    |
+| I_SW<1>                            | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLUP   | 0 / 0    |
+| I_SW<2>                            | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLUP   | 0 / 0    |
+| I_SW<3>                            | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLUP   | 0 / 0    |
+| O_AUDIO_L                          | IOB              | OUTPUT    | LVTTL                |       | 8        | SLOW |              |          | 0 / 0    |
+| O_AUDIO_R                          | IOB              | OUTPUT    | LVTTL                |       | 8        | SLOW |              |          | 0 / 0    |
+| O_HSYNC                            | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_LCD_E                            | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
+| O_LCD_RW                           | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
+| O_LED<0>                           | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_LED<1>                           | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST |              |          | 0 / 0    |
+| O_LED<2>                           | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST |              |          | 0 / 0    |
+| O_LED<3>                           | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST |              |          | 0 / 0    |
+| O_PLATFORMFLASH_OE                 | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
+| O_SPI_ADC_CONV                     | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
+| O_SPI_DAC_CS                       | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
+| O_SPI_ROM_CS                       | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<0>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<1>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<2>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<3>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<4>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<5>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<6>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<7>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<8>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<9>              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<10>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<11>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<12>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<13>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<14>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<15>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<16>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<17>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<18>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<19>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<20>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<21>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<22>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_ADDR<23>             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_BYTE                 | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_CE_L                 | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_OE_L                 | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_STRATAFLASH_WE_L                 | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| O_VIDEO_B<0>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST |              |          | 0 / 0    |
+| O_VIDEO_B<1>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST |              |          | 0 / 0    |
+| O_VIDEO_B<2>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VIDEO_B<3>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VIDEO_G<0>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST |              |          | 0 / 0    |
+| O_VIDEO_G<1>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VIDEO_G<2>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VIDEO_G<3>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VIDEO_R<0>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST |              |          | 0 / 0    |
+| O_VIDEO_R<1>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VIDEO_R<2>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VIDEO_R<3>                       | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
+| O_VSYNC                            | IOB              | OUTPUT    | LVTTL                |       | 8        | FAST | OFF1         |          | 0 / 0    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Modular Design Summary
+-----------------------------------
+Modular Design not used for this design.
+
+Section 11 - Timing Report
+--------------------------
+This design was not run using timing mode.
+
+Section 12 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 13 - Control Set Information
+------------------------------------
+No control set information for this architecture.
+
+Section 14 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.

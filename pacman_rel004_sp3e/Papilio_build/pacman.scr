@@ -1,0 +1,10 @@
+run
+-ifn pacman.prj
+-ifmt VHDL
+-ofn pacman.ngc
+-ofmt NGC
+-p XC3S500E-FG320-4
+-opt_mode Area
+-opt_level 1
+-top pacman
+-keep_hierarchy yes
