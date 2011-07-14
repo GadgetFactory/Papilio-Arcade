@@ -1,0 +1,7 @@
+-g DonePin:PULLUP
+-g TdoPin:PULLNONE
+-g M0Pin:PULLUP
+-g M1Pin:PULLUP
+-g M2Pin:PULLUP
+-g StartUpClk:JTAGCLK
+-g DriveDone:Yes

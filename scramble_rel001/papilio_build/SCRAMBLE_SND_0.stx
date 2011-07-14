@@ -1,0 +1,35 @@
+Release 12.3 - xst M.70d (nt)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to C:/Documents and Settings/JZarsuel/My Documents/Dropbox/ondesk/scramble_rel001/papilio_build/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
+ 
+--> Parameter xsthdpdir set to C:/Documents and Settings/JZarsuel/My Documents/Dropbox/ondesk/scramble_rel001/papilio_build/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
+ 
+--> WARNING:Xst:3164 - Option "-debug" found multiple times in the command line. Only the first occurence is considered.
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "C:/Documents and Settings/JZarsuel/My Documents/Dropbox/ondesk/scramble_rel001/roms/SCRAMBLE_SND_1.vhd" in Library work.
+Entity <SCRAMBLE_SND_0> compiled.
+Entity <SCRAMBLE_SND_0> (Architecture <RTL>) compiled.
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.23 secs
+ 
+--> 
+
+Total memory usage is 123552 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

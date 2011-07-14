@@ -1,0 +1,5 @@
+set -tmpdir "C:/Documents and Settings/JZarsuel/My Documents/Dropbox/ondesk/scramble_rel001/papilio_build/xst/projnav.tmp"
+set -xsthdpdir "C:/Documents and Settings/JZarsuel/My Documents/Dropbox/ondesk/scramble_rel001/papilio_build/xst"
+elaborate
+-ifn SCRAMBLE_SND_0.prj
+-ifmt mixed
