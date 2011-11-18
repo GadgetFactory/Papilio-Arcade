@@ -1,8 +1,0 @@
-INTSTYLE=ise
-INFILE=C:\dbdev\My Dropbox\GadgetFactory\kit-arcade\Papilio_Scramble-Frogger\scramble_rel001\papilio_build\SCRAMBLE_TOP.ncd
-OUTFILE=C:\dbdev\My Dropbox\GadgetFactory\kit-arcade\Papilio_Scramble-Frogger\scramble_rel001\papilio_build\SCRAMBLE_TOP.bit
-FAMILY=Spartan3E
-PART=xc3s500e-4vq100
-WORKINGDIR=C:\dbdev\My Dropbox\GadgetFactory\kit-arcade\Papilio_Scramble-Frogger\scramble_rel001\papilio_build
-LICENSE=WebPack
-USER_INFO=175441551_0_0_333

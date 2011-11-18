@@ -1,9 +1,0 @@
-run
--ifn scramble.prj
--ifmt VHDL
--ofn scramble.ngc
--ofmt NGC
--p XC3S500E-FG320-4
--opt_mode Area
--opt_level 1
--top scramble_top
