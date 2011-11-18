@@ -1,0 +1,173 @@
+**************************************************************************************************
+*  2004- 9-24                                                           Katsumi Degawa           *
+*                   XILINX(SPARTANⅡE)-FPGA-GALAXIAN へようこそ                                  *
+*                                                                                                *
+**************************************************************************************************
+【　 はじめに　  】
+   このXILINX(SPARTANⅡE)-FPGA-MOONCRESTAは、1980年代に初めに発表され　ゲームセンターなどで活躍？
+　 していた　基板と回路図を元にVerilogHDLで設計し、FPGAで動作するようにしたものです。
+
+【　変更点：v2.50　】
+
+　　1.T80_IPでは、1.5MHz動作でしたが　V2.50から　3.0MHzで動作しています.
+
+　　2.V1.xxでは、デバイスやCPU_IPによって分かれていたファイルを一つに総合しました。
+
+　　　ただし　デバイスにより構築方法が異なるため　デバイス別のテキストを参照して下さい。
+
+【　必要なHARD　】
+　1.　XILINX　CPLD.FPGA開発Tool　｢XILINX ISE6.2SP3 Webpack｣　が動作するPC
+　　　*OSは、WINDOWS2000　or　WINDOWS　XP 
+
+　2.　Xilinx Parallel Port Download Cable
+
+　3.　XILINX FPGA DEVICE
+
+【　必要なSOFT　】
+　1.　XILINX ISE6.2SP3 Webpack
+　　　下記URLより　ダウンロードしてください。　登録が必要。
+      http://www.xilinx.co.jp/xlnx/xil_prodcat_landingpage.jsp?title=ISE+WebPack
+
+【　GALAXIAN  ROM-構築　】
+　1.　GALAXIAN 基板のROMデータを下記File名でコピーする。
+
+　　   IC(ROM) 　 　　ADDERSS (SIZE)　　　　　File-Name
+         7H 　0x0000 - 0x07FF(0x0800)         galmidw.u
+              0x0800 - 0x0FFF(0x0800)         galmidw.v
+              0x1000 - 0x17FF(0x0800)         galmidw.w
+              0x1800 - 0x1FFF(0x0800)         galmidw.y
+         7L 　0x2000 - 0x27FF(0x0800)            7l
+         1K                  (0x0800)          1k.bin
+         1H                  (0x0800)          1h.bin
+         6L                  (0x0020)          6l.bpr
+
+    　　　　　　　　　　　　　　　* File名は、アーケードエミュレーターとして最も有名な
+　　　　　　　　　　　　　　　　　　M.A.M.E(http://www.mame.net/)に合わせています. 
+
+　2.　1.のROM-Fileを"\make_rom"フォルダにコピーする。
+　3.　make_rom.bat を実行
+
+       address map
+     --------------------------------------------------
+     0x00000 - 0x007FF       galmidw.u        CPU-ROM
+     0x00800 - 0x00FFF       galmidw.v        CPU-ROM
+     0x01000 - 0x017FF       galmidw.w        CPU-ROM
+     0x01800 - 0x01FFF       galmidw.y        CPU-ROM
+     0x02000 - 0x027FF       7l               CPU-ROM
+     0x04000 - 0x047FF       1k.bin           VID-ROM
+     0x05000 - 0x057FF       1h.bin           VID-ROM       
+     0x10000 - 0x3FFFF       mc_wav_2.bin     Sound(Wav)Data       
+
+　4.　galaxian_sf.bin　をROM にダウンロードする。
+　　　　ROM は、容量が　2Mbit　以上のEP-ROM　or　EEP-ROM　を使用する。
+
+  5.　mooncrst_prjフォルダ下に　mc_top.ucf & mc_top_pad.ucf　が出来ていることを
+      確認してください。
+　　　　
+【　XILINX-FPGA-DATA(mc_top.bit or mc_top.mcs)の作成＆ダウンロード　】
+１．FPGA-GALAXIAN に必要なFileを下記に記載します。
+
+	VERILOG_FILE = src\mc_top.v;　　
+	VERILOG_FILE = src\mc_top_pad.v;
+	VERILOG_FILE = src\mc_clock.v;
+	VERILOG_FILE = src\mc_adec.v;
+	VERILOG_FILE = src\mc_inport.v;
+	VERILOG_FILE = src\mc_hv_count.v;
+	VERILOG_FILE = src\mc_video.v;
+	VERILOG_FILE = src\mc_ld_pls.v;
+	VERILOG_FILE = src\mc_missile.v;
+	VERILOG_FILE = src\mc_stars.v;
+	VERILOG_FILE = src\mc_vedio_mix.v;
+	VERILOG_FILE = src\mc_col_pal.v;
+	VERILOG_FILE = src\mc_sound_a.v;
+	VERILOG_FILE = src\mc_sound_b.v;
+	VERILOG_FILE = src\mc_vga_if_xlinx.v;
+	VERILOG_FILE = src\mc_logic.v;
+	VERILOG_FILE = src\mc_bram_if_xlinx.v;
+	VERILOG_FILE = src\z80ip_b.v;
+	VERILOG_FILE = src\psPAD_conf.v;
+	VERILOG_FILE = src\psPAD_top.v;
+	VERILOG_FILE = src\fpga_arcade_if.v;
+	VERILOG_FILE = src\fpga_arcade_if_x.v;
+	VERILOG_FILE = src\dac.v;
+	VERILOG_FILE = src\z80ip.v;
+	VHDL_FILE = t80_ip\T80_Pack.vhd;
+	VHDL_FILE = t80_ip\T80_ALU.VHD;
+	VHDL_FILE = t80_ip\T80_MCode.vhd;
+	VHDL_FILE = t80_ip\T80_RegX.vhd;
+	VHDL_FILE = t80_ip\T80.VHD;
+	VHDL_FILE = t80_ip\T80as.vhd;
+
+２．PIN assignを変更する場合は、”mc_top.ucf & mc_top_pad.ucf”を編集してください.
+
+３．モニタは、PC用のVGAモニタを推奨します.　しかし16KHｚ(H).60Hz(V)のRGBモニタも使用する
+　　ことが出来ます.　この場合、mc_top.v の　”`define VGA_USE”をコメントアウトして下さい.
+　　　　　　`define VGA_USE　　⇒　// `define VGA_USE
+
+４．playstationのコントローラを使用する場合は、mc_conf.v の　”`define PSPAD_USE”の
+　　コメントアウトを外して下さい.
+　　　　　//　`define PSPAD_USE　　⇒　`define PSPAD_USE
+
+５．Z80_IPのNGC FILEの生成
+　【　T80（t80as.ngc）】
+　　(1)　t80_ip.nplからProject Navigator起動する。
+　　(2)　t80asのsynthesise を実行する。
+　　(3)　prjフォルダ下にt80as.ngcが出来ていることを確認する。
+
+６．PSPAD_IPのNGC FILEの生成
+　　*PLAYSTATIONコントローラを使用する場合に必要です.
+　　(1)　ps_pad_ip.nplからProject Navigator起動する。
+　　(2)　fpga_arcade_ifのsynthesise を実行する。
+　　(3)　prjフォルダ下にfpga_arcade_if.ngcが出来ていることを確認する。
+
+７．mc_top.bit.mc_top.mcsの作成
+　　(1)　galaxian_prj_v25.nplからProject Navigator起動する。
+         PLAYSTATIONコントローラを使用する場合は、
+　　　　 galaxian_prj_v25_p.nplからProject Navigator起動する。
+　　(2)　Generate Programming File  を実行する。
+    (3)　prjフォルダ下に mc_top.bitが出来ていることを確認する。 
+　　(4)　コンフィギュレーションROMを使用する場合は､Generate PROM,ACE or JTAG File
+　　　　 を実行して　mc_top.mcs　ファイルを作成して下さい.
+
+８．生成された”mc_top.bit”又は､”mc_top.mcs”をダウンロードして完了です。
+
+【　FPGA-MoonCresta コントロール　】
+　【 I_PSW[4:0] 】
+　LEFT  1P/2P : LEFT   (I_SW[2])
+　RIGHT 1P/2P : RIGHT  (I_SW[3])
+　UP    1P/2P : UP     (I_SW[0]) ... NOT USE
+　DOWN  1P/2P : DOWN   (I_SW[1]) ... NOT USE
+　FIRE　1P/2P : JP     (I_SW[4])
+　START 1P    : LEFT  + JP 
+　START 2P    : RIGHT + JP
+　COIN1       : LEFT + RIGHT + UP (and DOWN off)
+
+  【  PS_PAD   】
+　LEFT  1P/2P : LEFT　（Right Joystick）
+　RIGHT 1P/2P : RIGHT （Right Joystick）
+　UP    1P/2P : UP    （Right Joystick） ... NOT USE
+　DOWN  1P/2P : DOWN  （Right Joystick） ... NOT USE
+　FIRE　1P/2P :  ↓     
+　START 1P    : START
+　START 2P    : SELCT
+　COIN1       :  ○
+
+  Enjoy!
+　
+【　著作権＆免責　】
+　fpga-mooncrst　の著作権は、Katsumi Degawa に属します.
+  fpga-galaxian　の著作権は、Katsumi Degawa に属します.
+　pspad　　　    の著作権は、Katsumi Degawa に属します.
+　T80(Z80_IP)　　の著作権は、Daniel Wallner氏 に属します.
+  binucf.exe     の著作権は  Tatsuyuki Satoh 氏に属します.
+
+　本ソースファイルを使用したことにより生じたいかなる障害、損害において作者は一切責任を負わ
+  ないものとします。
+　各自の責任において使用してください。
+
+【　連絡先　】
+　ご意見、ご要望等ありまりたら是非以下のまでご連絡をお願いします。
+　ただしROMイメージ等のご質問は、お答えできません。
+
+                                E-mail :  office_dsan@infoseek.jp　
+
