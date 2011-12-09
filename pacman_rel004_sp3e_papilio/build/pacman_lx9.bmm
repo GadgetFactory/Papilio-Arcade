@@ -1,0 +1,99 @@
+
+
+ADDRESS_MAP avrmap PPC405 0
+
+    ADDRESS_SPACE rom_code RAMB16 [0x00000000:0x00003fff]
+        BUS_BLOCK
+	    u_program_rom/rom0.inst [7:0];
+        END_BUS_BLOCK;
+		  
+        BUS_BLOCK
+	    u_program_rom/rom1.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_program_rom/rom2.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_program_rom/rom3.inst [7:0];
+        END_BUS_BLOCK;		  
+
+        BUS_BLOCK
+	    u_program_rom/rom4.inst [7:0];
+        END_BUS_BLOCK;
+		  
+        BUS_BLOCK
+	    u_program_rom/rom5.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_program_rom/rom6.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_program_rom/rom7.inst [7:0];
+        END_BUS_BLOCK;	
+		  
+    END_ADDRESS_SPACE;
+	 
+    ADDRESS_SPACE rom_wiz RAMB16 [0x00000000:0x00001fff]
+        BUS_BLOCK
+	    u_program_wiz/rom0.inst [7:0];
+        END_BUS_BLOCK;
+		  
+        BUS_BLOCK
+	    u_program_wiz/rom1.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_program_wiz/rom2.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_program_wiz/rom3.inst [7:0];
+        END_BUS_BLOCK;		  
+		  
+    END_ADDRESS_SPACE;
+
+    ADDRESS_SPACE rom_gfx1 RAMB16 [0x00000000:0x00001fff]
+        BUS_BLOCK
+	    u_video/char_rom_5ef/rom0.inst [7:0];
+        END_BUS_BLOCK;
+		  
+        BUS_BLOCK
+	    u_video/char_rom_5ef/rom1.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_video/char_rom_5ef/rom2.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_video/char_rom_5ef/rom3.inst [7:0];
+        END_BUS_BLOCK;		  
+		  
+    END_ADDRESS_SPACE;		 
+	  
+    ADDRESS_SPACE rom_audio1m RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_audio/audio_rom_1m/rom0.inst [7:0];
+        END_BUS_BLOCK;
+		  
+    END_ADDRESS_SPACE;	
+
+    ADDRESS_SPACE rom_col4a RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_video/col_rom_4a/rom0.inst [7:0];
+        END_BUS_BLOCK;
+		  
+    END_ADDRESS_SPACE;	
+
+    ADDRESS_SPACE rom_col7f RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_video/col_rom_7f/rom0.inst [7:0];
+        END_BUS_BLOCK;
+		  
+    END_ADDRESS_SPACE;		 
+
+END_ADDRESS_MAP;

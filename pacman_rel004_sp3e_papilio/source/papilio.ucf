@@ -1,0 +1,221 @@
+# Papilio User Constraints File
+
+# Main board wing pin [] to FPGA pin Pxx map
+# -------C-------    -------B-------    -------A-------
+# [GND] [C00] P91    [GND] [B00] P85    P86 [A15]
+# [2V5] [C01] P92    [2V5] [B01] P83    P84 [A14]
+# [3V3] [C02] P94    [3V3] [B02] P78    P79 [A13]
+# [5V0] [C03] P95    [5V0] [B03] P71    P70 [A12]
+#       [C04] P98          [B04] P68    P67 [A11] [5V0]
+#       [C05] P2           [B05] P66    P65 [A10] [3V3]
+#       [C06] P3           [B06] P63    P62 [A09] [2V5]
+#       [C07] P4           [B07] P61    P60 [A08] [GND]
+# [GND] [C08] P5     [GND] [B08] P58    P57 [A07]
+# [2V5] [C09] P9     [2V5] [B09] P54    P53 [A06]
+# [3V3] [C10] P10    [3V3] [B10] P41    P40 [A05]
+# [5V0] [C11] P11    [5V0] [B11] P36    P35 [A04]
+#       [C12] P12          [B12] P34    P33 [A03] [5V0]
+#       [C13] P15          [B13] P32    P26 [A02] [3V3]
+#       [C14] P16          [B14] P25    P23 [A01] [2V5]
+#       [C15] P17          [B15] P22    P18 [A00] [GND]
+
+# Wing pin to FPGA pin map
+
+# Pin AH   BH   CH     VGA16  VGA8   Joystick   Audio   MicroSD  PS2     Button
+# 15  P86  P22  P17    R3     RED    UP         A1L     -        -       PB1
+# 14  P84  P25  P16    R2     GRN    DOWN       A1S     -        -       LED1
+# 13  P79  P32  P15    R1     -      LEFT       A1R     D2       -       PB2
+# 12  P70  P34  P12    R0     -      RIGHT      -       CS       -       LED2
+# 11  P67  P36  P11    G3     -      SELECT     -       SI       DAT2    PB3
+# 10  P65  P41  P10    G2     BLU    SW1        A2L     SCK      CLK2    LED3
+# 09  P62  P54  P9     G1     HS     SW2        A2S     SO       DAT1    PB4
+# 08  P60  P58  P5     G0     VS     LED        A2R     D1       CLK1    LED4
+
+# Pin AL   BL   CL     VGA16   VGA8   Joystick   Audio   MicroSD  PS2     Button
+# 07  P57  P61  P4     B3     RED    UP         A1L     -        -       PB1
+# 06  P53  P63  P3     B2     GRN    DOWN       A1S     -        -       LED1
+# 05  P40  P66  P2     B1     -      LEFT       A1R     D2       -       PB2
+# 04  P35  P68  P98    B0     -      RIGHT      -       CS       -       LED2
+# 03  P33  P71  P95    -      -      SELECT     -       SI       DAT2    PB3
+# 02  P26  P78  P94    -      BLU    SW1        A2L     SCK      CLK2    LED3
+# 01  P23  P83  P92    VS     HS     SW2        A2S     SO       DAT1    PB4
+# 00  P18  P85  P91    HS     VS     LED        A2R     D1       ClK1    LED4
+
+# Example 1
+# Say you have a button board BPW5007 plugged into wing AL look at a pin in
+# the "Button" column, say LED4 then across to column AL and you can see it
+# corresponds to FPGA pin P18, if the same board was plugged into BH then
+# LED4 would be P58
+
+# Example 2
+# If you have a VGA board BPW5017 plugged into wing CH, then look at a pin
+# under the VGA8 column, say BLU and across to column CH and you find that
+# BLU is FPGA pin P10, if the same VGA board was plugged into wing AH then
+# BLU would be FPGA pin P65
+
+# Once you find the FPGA pin, go to the NET definition below and uncomment
+# the respective line. You may rename the NET from WingX_Ynn to the name you
+# use in your design
+
+###########################################################
+# UCF File starts here, uncomment lines below as required #
+###########################################################
+
+CONFIG PART = XC3S500E-VQ100-4 ;
+#CONFIG PART = XC3S250E-VQ100-4 ;
+
+NET OSC_IN						LOC = "P89"  | IOSTANDARD = LVTTL | PERIOD = 31.25ns ; # 32.00 MHz oscillator
+
+#NET JTAG_TMS					LOC = "P75"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET JTAG_TCK					LOC = "P77"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET JTAG_TDI					LOC = "P100" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET JTAG_TDO					LOC = "P76"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+
+#NET USB_TXD					LOC = "P88"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP;
+#NET USB_RXD					LOC = "P90"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+
+#NET FLASH_CS					LOC = "P24"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET FLASH_CK					LOC = "P50"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET FLASH_SI					LOC = "P27"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET FLASH_SO					LOC = "P44"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP;
+
+##########Uncomment this section for the Papilio Arcade MegaWing ##########################################
+NET O_AUDIO_L					LOC = "P84"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; #
+NET O_AUDIO_R					LOC = "P86"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; #
+
+#Atari 2600 Joystick Diagram
+#\ o5 o4 o3 o2 o1/
+# \ o9 o8 o7 o6 /
+#  \___________/
+#
+#Pin Joystick 
+#
+#1   Forward  
+#2   Back    
+#3   Left    
+#4   Right   
+#5   -       
+#6   Button 1
+#7   +5V *    
+#8   GND     
+#9   -
+#Atari 2600 Joystick Diagram
+
+#Joystick A																														#Purpose		#Arcade MegaWing Location
+NET I_BUTTON(0)				LOC = "P5"   | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# up			pin 1 of DB9 Joystick A connector
+NET I_BUTTON(1)				LOC = "P10"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# down		pin 2 of DB9 Joystick A connector
+NET I_BUTTON(2)				LOC = "P11"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# left		pin 3 of DB9 Joystick A connector
+NET I_BUTTON(3)				LOC = "P15"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# right		pin 4 of DB9 Joystick A connector
+#NET I_BUTTON(4)				LOC = "P17"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# ?			pin 5 of DB9 Joystick A connector
+NET I_SW(2)						LOC = "P9" 	 | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# fire/cred	pin 6 of DB9 Joystick A connector
+NET JOYSTICK_GND        	LOC = "P12"  | IOSTANDARD = LVTTL;# 												# GND 		pin 8 of DB9 Joystick A connector
+#NET Joystick_9				LOC = "P16"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# ?			pin 9 of DB9 Joystick A connector
+
+#Joystick B																														#Purpose		#Arcade MegaWing Location
+#NET I_BUTTON(0)				LOC = "P34"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# up			pin 1 of DB9 Joystick B connector
+#NET I_BUTTON(1)				LOC = "P25"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# down		pin 2 of DB9 Joystick B connector
+#NET I_BUTTON(2)				LOC = "P22"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# left		pin 3 of DB9 Joystick B connector
+#NET I_BUTTON(3)				LOC = "P23"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# right		pin 4 of DB9 Joystick B connector
+##NET I_BUTTON(4)				LOC = "P33"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# ?			pin 5 of DB9 Joystick B connector
+#NET I_SW(0)					LOC = "P32"	 | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# fire/cred	pin 6 of DB9 Joystick B connector
+#NET JOYSTICK_GND		      LOC = "P18"  | IOSTANDARD = LVTTL;#													# GND 		pin 8 of DB9 Joystick B connector
+##NET Joystick_9				LOC = "P26"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# ?			pin 9 of DB9 Joystick B connector
+
+#Push buttons																													#Purpose		#Arcade MegaWing Location
+NET I_SW(3)						LOC = "P36"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# start 2	RIGHT button
+#NET I_SW(2)					LOC = "P54"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# unused		UP button
+NET I_SW(1)						LOC = "P41"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# credit		DOWN button
+NET I_SW(0)						LOC = "P58"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;				# start 1	LEFT button
+
+NET I_RESET						LOC = "P67"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLDOWN ; # reset
+
+# Video Section
+NET O_HSYNC                     LOC = "P95" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VSYNC                     LOC = "P94" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+# original bits
+NET O_VIDEO_R(3)                LOC = "P4" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_G(3)                LOC = "P61" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_B(3)                LOC = "P71" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+# extra bits
+NET O_VIDEO_B(2)                LOC = "P78"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_B(1)                LOC = "P83"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_B(0)                LOC = "P85"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(2)                LOC = "P63" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(1)                LOC = "P66" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(0)                LOC = "P68" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(2)                LOC = "P3" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(1)                LOC = "P2" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(0)                LOC = "P98" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+
+#LEDs
+#NET LED(0)			         LOC = "P57"  | IOSTANDARD = LVTTL;#
+#NET LED(1)			         LOC = "P53"  | IOSTANDARD = LVTTL;#
+#NET LED(2)			         LOC = "P40"  | IOSTANDARD = LVTTL;#
+#NET LED(3)			         LOC = "P35"  | IOSTANDARD = LVTTL;#
+
+#PS/2 Connectors
+#NET PS2CLKA			LOC = "P92"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; #PS/2 A
+#NET PS2DATA			LOC = "P91"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; #PS/2 A
+#
+#NET PS2CLKB			LOC = "P79"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; #PS/2 B
+#NET PS2DATB			LOC = "P70"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; #PS/2 B
+##########End of Section for Papilio Arcade MegaWing ###############################################
+
+##########Uncomment this section for the Papilio Arcade Kit ##########################################
+# original bits
+#NET O_VIDEO_R(3)                LOC = "P57" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_G(3)                LOC = "P53" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_B(3)                LOC = "P26" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+## extra bits
+#NET O_VIDEO_B(2)                LOC = "P33"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_B(1)                LOC = "P35"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_B(0)                LOC = "P40"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_G(2)                LOC = "P65" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_G(1)                LOC = "P67" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_G(0)                LOC = "P70" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_R(2)                LOC = "P79" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_R(1)                LOC = "P84" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_R(0)                LOC = "P86" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#
+#NET O_HSYNC                     LOC = "P23" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VSYNC                     LOC = "P18" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#
+#NET I_SW(3)                     LOC = "P61" | IOSTANDARD = LVTTL | PULLDOWN;	#	Coin 1	PB1	B7
+#NET I_SW(2)                     LOC = "P66" | IOSTANDARD = LVTTL | PULLDOWN;	#	Start 2	PB2	B5
+#NET I_SW(1)                     LOC = "P94" | IOSTANDARD = LVTTL | PULLUP;	#	Start 1	Fire	C2
+#NET I_SW(0)                     LOC = "P71" | IOSTANDARD = LVTTL | PULLUP;		#	NTSC/VGA
+#
+#Atari 2600 Joystick Diagram
+#\ o5 o4 o3 o2 o1/
+# \ o9 o8 o7 o6 /
+#  \___________/
+#
+#Pin Joystick 
+#
+#1   Forward  
+#2   Back    
+#3   Left    
+#4   Right   
+#5   -       
+#6   Button 1
+#7   +5V *    
+#8   GND     
+#9   -
+#Atari 2600 Joystick Diagram
+#
+##NET "JOYSTICK_GND"              LOC = "P92"  | IOSTANDARD = LVTTL | PULLDOWN; # 	GND		C1 
+#NET "I_BUTTON(0)"               LOC = "P4"  | IOSTANDARD = LVTTL | PULLUP ; # 	Forward	C7 
+#NET "I_BUTTON(2)"               LOC = "P2" | IOSTANDARD = LVTTL | PULLUP ; # 	Left		C5
+#NET "I_BUTTON(3)"               LOC = "P98" | IOSTANDARD = LVTTL | PULLUP ; # 	Right		C4
+#NET "I_BUTTON(1)"               LOC = "P3" | IOSTANDARD = LVTTL | PULLUP ; # 	Back 		C6
+#
+#NET O_LED(3)                    LOC = "P16" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_LED(2)                    LOC = "P12" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_LED(1)                    LOC = "P10" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_LED(0)                    LOC = "P5" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#
+#NET I_RESET                     LOC = "P22" | IOSTANDARD = LVTTL | PULLDOWN ; # rot push button
+#
+#NET O_AUDIO_L                   LOC = "P17"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;	#C15	- Audio Wing should be in CH
+#NET O_AUDIO_R                   LOC = "P15"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;	#C13	- Audio Wing should be in CH
+##########End of Section for Papilio Arcade Kit #####################################################

@@ -1,0 +1,3 @@
+build_roms_*.bat files generate the VHDL files needed to synthesize ROMs into the Pacman Hardware. Synthesis takes several minutes and should only be done if you want to make changes to the Pac-Man hardware such as dip switch settings.
+
+merge_roms_*.bat files will merge ROM files into pre-synthesized bit files. Merging takes a couple of seconds and should be used if you just want to try out a game on the Pac-man hardware.

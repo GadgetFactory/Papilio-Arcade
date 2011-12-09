@@ -1,0 +1,121 @@
+// BMM LOC annotation file.
+//
+// Release 13.2 - Data2MEM O.61xd, build 2.2 May 20, 2011
+// Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'avrmap', ID 0, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP avrmap PPC405 0
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_col7f' 0x00000000:0x000007FF (2 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_col7f RAMB16 [0x00000000:0x000007FF]
+        BUS_BLOCK
+            u_video/col_rom_7f/rom0.inst [7:0] PLACED = X0Y0;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_col4a' 0x00000000:0x000007FF (2 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_col4a RAMB16 [0x00000000:0x000007FF]
+        BUS_BLOCK
+            u_video/col_rom_4a/rom0.inst [7:0] PLACED = X0Y2;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_audio1m' 0x00000000:0x000007FF (2 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_audio1m RAMB16 [0x00000000:0x000007FF]
+        BUS_BLOCK
+            u_audio/audio_rom_1m/rom0.inst [7:0] PLACED = X1Y8;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_gfx1' 0x00000000:0x00001FFF (8 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_gfx1 RAMB16 [0x00000000:0x00001FFF]
+        BUS_BLOCK
+            u_video/char_rom_5ef/rom0.inst [7:0] PLACED = X0Y7;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_video/char_rom_5ef/rom1.inst [7:0] PLACED = X0Y8;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_video/char_rom_5ef/rom2.inst [7:0] PLACED = X0Y6;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_video/char_rom_5ef/rom3.inst [7:0] PLACED = X0Y9;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_code' 0x00000000:0x00003FFF (16 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_code RAMB16 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            u_program_rom/rom0.inst [7:0] PLACED = X1Y7;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_program_rom/rom1.inst [7:0] PLACED = X1Y5;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_program_rom/rom2.inst [7:0] PLACED = X1Y2;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_program_rom/rom3.inst [7:0] PLACED = X1Y3;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_program_rom/rom4.inst [7:0] PLACED = X1Y0;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_program_rom/rom5.inst [7:0] PLACED = X1Y1;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_program_rom/rom6.inst [7:0] PLACED = X1Y4;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            u_program_rom/rom7.inst [7:0] PLACED = X1Y6;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+
