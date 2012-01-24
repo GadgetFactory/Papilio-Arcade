@@ -1,0 +1,81 @@
+
+
+ADDRESS_MAP avrmap PPC405 0
+
+    ADDRESS_SPACE ROM_LUT RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_scramble/u_video/col_rom/rom0.inst [7:0];
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+ 
+   ADDRESS_SPACE ROM_PGM RAMB16 [0x00000000:0x00003fff]
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom0.inst [7:0];
+        END_BUS_BLOCK;
+		  
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom1.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom2.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom3.inst [7:0];
+        END_BUS_BLOCK;		  
+
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom4.inst [7:0];
+        END_BUS_BLOCK;
+		  
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom5.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom6.inst [7:0];
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+	    u_scramble/pgm_rom/rom7.inst [7:0];
+        END_BUS_BLOCK;	
+		  
+    END_ADDRESS_SPACE;
+
+    ADDRESS_SPACE ROM_OBJ_0 RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_scramble/u_video/obj_rom0/rom0.inst [7:0];
+        END_BUS_BLOCK;
+
+    END_ADDRESS_SPACE;
+
+    ADDRESS_SPACE ROM_OBJ_1 RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_scramble/u_video/obj_rom1/rom0.inst [7:0];
+        END_BUS_BLOCK;
+
+    END_ADDRESS_SPACE;	
+
+    ADDRESS_SPACE ROM_SND_0 RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_audio/u_rom_5c/rom0.inst [7:0];
+        END_BUS_BLOCK;
+
+    END_ADDRESS_SPACE;
+
+    ADDRESS_SPACE ROM_SND_1 RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_audio/u_rom_5d/rom0.inst [7:0];
+        END_BUS_BLOCK;
+
+    END_ADDRESS_SPACE;		
+
+    ADDRESS_SPACE ROM_SND_2 RAMB16 [0x00000000:0x000007ff]
+        BUS_BLOCK
+	    u_audio/u_rom_5e/rom0.inst [7:0];
+        END_BUS_BLOCK;
+
+    END_ADDRESS_SPACE;		 
+
+END_ADDRESS_MAP;

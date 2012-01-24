@@ -87,7 +87,7 @@ end;
 architecture RTL of SCRAMBLE_TOP is
   -- this MUST be set true for frogger
 	-- this MUST be set false for scramble, the_end, amidar
-  constant I_HWSEL_FROGGER  : boolean := true;
+  constant I_HWSEL_FROGGER  : boolean := false;
 
   signal I_RESET_L        : std_logic;
   signal reset            : std_logic;
@@ -132,7 +132,7 @@ architecture RTL of SCRAMBLE_TOP is
   -- audio
   signal audio            : std_logic_vector(9 downto 0);
   signal audio_pwm        : std_logic;
-  signal scan_conv        : std_logic;
+  signal dbl_scan        : std_logic;
 
 signal clk_temp : std_logic;
 
@@ -209,14 +209,14 @@ begin
       CLK          => clk
       );
 
-  scan_conv <= '1';
+  dbl_scan <= '1';
   p_video_ouput : process
   begin
     wait until rising_edge(clk);
     -- switch is on (up) use scan converter and light led
 --    O_LED(3 downto 1) <= "000";
 
-    if (scan_conv = '1') then
+    if (dbl_scan = '1') then
 --      O_LED(0) <= '1';
       O_VIDEO_R(3 downto 0) <= video_r_x2;
       O_VIDEO_G(3 downto 0) <= video_g_x2;
@@ -295,17 +295,31 @@ begin
     CLK      => clk
     );
 
+	--button_debounced(0) = Joystick Up
+	--button_debounced(1) = Joystick Down
+	--button_debounced(2) = Joystick Left
+	--button_debounced(3) = Joystick Right
+	--button_debounced(4) = Button Left
+	--button_debounced(5) = Button Down
+	--button_debounced(6) = Joystick Fire
+	--button_debounced(7) = Button Right
+	
+	--Buttons are connected to ground and connect to 3.3V when pressed
+	--Joystick has internal pullup resistor and connects to ground when pressed
+	
+	--A '0' on the input is active. Inputs are active low.
+
   -- assign inputs
   -- start, shoot1, shoot2, left,right,up,down
-  ip_1p(6) <= button_debounced(6); -- start
-  ip_1p(5) <= button_debounced(5); -- shoot1
-  ip_1p(4) <= button_debounced(5); -- shoot2
+  ip_1p(6) <= not button_debounced(4); -- start 1
+  ip_1p(5) <= button_debounced(6); -- shoot1
+  ip_1p(4) <= button_debounced(6); -- shoot2
   ip_1p(3) <= button_debounced(2); -- p1 left
   ip_1p(2) <= button_debounced(3); -- p1 right
   ip_1p(1) <= button_debounced(0); -- p1 up
   ip_1p(0) <= button_debounced(1); -- p1 down
   --
-  ip_2p(6) <= '1';
+  ip_2p(6) <= not button_debounced(7); -- start 2
   ip_2p(5) <= '1';
   ip_2p(4) <= '1';
   ip_2p(3) <= button_debounced(2); -- p2 left
@@ -314,7 +328,7 @@ begin
   ip_2p(0) <= button_debounced(1); -- p2 down
   --
   ip_service <= '1';
-  ip_coin1   <= button_debounced(7); -- credit
+  ip_coin1   <= not button_debounced(5); -- credit
   ip_coin2   <= '1';
 
   -- dip switch settings

@@ -642,9 +642,18 @@ begin
     end if;
   end process;
 
+-- Non BRAM (LUT) Version
+--  col_rom : entity work.ROM_LUT
+--    port map(
+--      ADDR        => obj_video_out_reg(4 downto 0),
+--      DATA        => obj_lut_out
+--      );
 
+-- BRAM Version
   col_rom : entity work.ROM_LUT
     port map(
+		CLK => CLK, 
+		ENA => '1',
       ADDR        => obj_video_out_reg(4 downto 0),
       DATA        => obj_lut_out
       );

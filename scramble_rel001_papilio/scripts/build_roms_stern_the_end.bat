@@ -22,7 +22,7 @@ REM concatenate consecutive ROM regions
 copy /b %rom_path_src%\ic13 + %rom_path_src%\ic14 + %rom_path_src%\ic15 + %rom_path_src%\ic16 + %rom_path_src%\ic17 + %rom_path_src%\ic18 %rom_path%\rom.bin > NUL
 
 REM generate RTL code for small PROMS
-%romgen_path%\romgen %rom_path_src%\6331-1j.86    ROM_LUT        5 c > %rom_path%\ROM_LUT.vhd
+%romgen_path%\romgen %rom_path_src%\6331-1j.86    ROM_LUT        5 l r e > %rom_path%\ROM_LUT.vhd
 
 REM generate RAMB structures for larger ROMS
 %romgen_path%\romgen %rom_path%\rom.bin           ROM_PGM   14 l r e > %rom_path%\ROM_PGM.vhd
