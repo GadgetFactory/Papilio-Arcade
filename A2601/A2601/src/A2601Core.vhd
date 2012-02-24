@@ -41,7 +41,7 @@ entity A2601 is
          av1: out std_logic_vector(3 downto 0);
          ph0_out: out std_logic;
          ph1_out: out std_logic);
-end A2601
+end A2601;
 
 architecture arch of A2601 is
 
@@ -120,7 +120,7 @@ begin
         port map(ph1, read, riot_rs, riot_cs,
             riot_irq, d, pa, pb, riot_pa7, riot_a);
 
-    tia: TIA
+    tia_inst: TIA
         port map(vid_clk, tia_cs, read, tia_a, d,
             colu, csyn, vsyn, hsyn, cv, rdy, ph0, ph1,
             au0, au1, av0, av1, inpt4, inpt5);

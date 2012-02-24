@@ -21,7 +21,7 @@ import os.path
 
 
 fin = open(sys.argv[1], 'rb')
-fout = open(sys.argv[2], 'w')
+fout = open("cart_rom.vhd", 'w')
 
 data = fin.read()
 

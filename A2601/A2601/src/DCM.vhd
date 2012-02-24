@@ -29,6 +29,7 @@ entity a2601_dcm is
    port ( CLKIN_IN        : in    std_logic; 
           RST_IN          : in    std_logic; 
           CLKFX_OUT       : out   std_logic; 
+          clk_osc_ref     : out   std_logic; 
           CLKIN_IBUFG_OUT : out   std_logic);
 end a2601_dcm;
 
@@ -36,6 +37,8 @@ architecture BEHAVIORAL of a2601_dcm is
    signal CLKFX_BUF       : std_logic;
    signal CLKIN_IBUFG     : std_logic;
    signal GND_BIT         : std_logic;
+   signal clk0         : std_logic;
+   signal clkfb         : std_logic;
    component BUFG
       port ( I : in    std_logic; 
              O : out   std_logic);
@@ -51,10 +54,10 @@ architecture BEHAVIORAL of a2601_dcm is
    component DCM_SP
       generic( CLK_FEEDBACK : string :=  "1X";
                CLKDV_DIVIDE : real :=  2.0;
-               CLKFX_DIVIDE : integer :=  1;
-               CLKFX_MULTIPLY : integer :=  4;
+               CLKFX_DIVIDE : integer :=  4;
+               CLKFX_MULTIPLY : integer :=  7;
                CLKIN_DIVIDE_BY_2 : boolean :=  FALSE;
-               CLKIN_PERIOD : real :=  10.0;
+               CLKIN_PERIOD : real :=  31.25;
                CLKOUT_PHASE_SHIFT : string :=  "NONE";
                DESKEW_ADJUST : string :=  "SYSTEM_SYNCHRONOUS";
                DFS_FREQUENCY_MODE : string :=  "LOW";
@@ -92,17 +95,20 @@ begin
       port map (I=>CLKFX_BUF,
                 O=>CLKFX_OUT);
    
-   CLKIN_IBUFG_INST : IBUFG
-      port map (I=>CLKIN_IN,
-                O=>CLKIN_IBUFG);
+--   CLKIN_IBUFG_INST : IBUFG
+--      port map (I=>CLKIN_IN,
+--                O=>CLKIN_IBUFG);
+					 
+  BUFG0 : BUFG port map (I=> clk0,  O => clkfb);
+	clk_osc_ref <= clkfb;  
    
    DCM_SP_INST : DCM_SP
    generic map( CLK_FEEDBACK => "NONE",
             CLKDV_DIVIDE => 2.0,
-            CLKFX_DIVIDE => 1,
-            CLKFX_MULTIPLY => 4,
+            CLKFX_DIVIDE => 4,
+            CLKFX_MULTIPLY => 7,
             CLKIN_DIVIDE_BY_2 => FALSE,
-            CLKIN_PERIOD => 71.429,
+            CLKIN_PERIOD => 31.25,
             CLKOUT_PHASE_SHIFT => "NONE",
             DESKEW_ADJUST => "SYSTEM_SYNCHRONOUS",
             DFS_FREQUENCY_MODE => "LOW",
@@ -111,8 +117,8 @@ begin
             FACTORY_JF => x"C080",
             PHASE_SHIFT => 0,
             STARTUP_WAIT => TRUE)
-      port map (CLKFB=>GND_BIT,
-                CLKIN=>CLKIN_IBUFG,
+      port map (CLKFB=>clkfb,
+                CLKIN=>CLKIN_IN,
                 DSSEN=>GND_BIT,
                 PSCLK=>GND_BIT,
                 PSEN=>GND_BIT,
@@ -121,7 +127,7 @@ begin
                 CLKDV=>open,
                 CLKFX=>CLKFX_BUF,
                 CLKFX180=>open,
-                CLK0=>open,
+                CLK0=>clk0,
                 CLK2X=>open,
                 CLK2X180=>open,
                 CLK90=>open,
