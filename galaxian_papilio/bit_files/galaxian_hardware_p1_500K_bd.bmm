@@ -1,0 +1,96 @@
+// BMM LOC annotation file.
+//
+// Release 13.2 - Data2MEM O.61xd, build 2.2 May 20, 2011
+// Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Processor 'avrmap', ID 0, memory map.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ADDRESS_MAP avrmap PPC405 0
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'galaxian_6l' 0x00000000:0x000007FF (2 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE galaxian_6l RAMB16 [0x00000000:0x000007FF]
+        BUS_BLOCK
+            mc_col_pal/galaxian_6l/rom0.inst [7:0] PLACED = X0Y7;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_1k' 0x00000000:0x000007FF (2 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_1k RAMB16 [0x00000000:0x000007FF]
+        BUS_BLOCK
+            mc_vid/k_rom/rom0.inst [7:0] PLACED = X0Y5;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_1h' 0x00000000:0x000007FF (2 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_1h RAMB16 [0x00000000:0x000007FF]
+        BUS_BLOCK
+            mc_vid/h_rom/rom0.inst [7:0] PLACED = X0Y4;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //
+    // Processor 'avrmap' address space 'rom_code' 0x00000000:0x00003FFF (16 KBytes).
+    //
+    ///////////////////////////////////////////////////////////////////////////////
+
+    ADDRESS_SPACE rom_code RAMB16 [0x00000000:0x00003FFF]
+        BUS_BLOCK
+            roms/u_rom/rom0.inst [7:0] PLACED = X1Y3;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            roms/u_rom/rom1.inst [7:0] PLACED = X1Y0;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            roms/u_rom/rom2.inst [7:0] PLACED = X1Y4;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            roms/u_rom/rom3.inst [7:0] PLACED = X1Y5;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            roms/u_rom/rom4.inst [7:0] PLACED = X1Y6;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            roms/u_rom/rom5.inst [7:0] PLACED = X1Y7;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            roms/u_rom/rom6.inst [7:0] PLACED = X1Y2;
+        END_BUS_BLOCK;
+
+        BUS_BLOCK
+            roms/u_rom/rom7.inst [7:0] PLACED = X1Y1;
+        END_BUS_BLOCK;
+    END_ADDRESS_SPACE;
+
+END_ADDRESS_MAP;
+

@@ -66,6 +66,8 @@ end process;
 
 galaxian_6l : entity work.GALAXIAN_6L
 port map (
+	CLK  => I_CLK_12M,
+	ENA  => '1',
 	ADDR => W_COL_ROM_A,
 	DATA => W_COL_ROM_DO
 );

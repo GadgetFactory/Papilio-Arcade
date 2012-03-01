@@ -481,11 +481,11 @@ begin
 	R1 <= not I_SW(3);
 	J1 <= not I_SW(4);
 	
-	S1 <= I_SW(0);
-	S2 <= '1';
+	S1 <= not I_SW(5);
+	S2 <= not I_SW(7);
 
-	C1 <= I_SW(0);
-	C2 <= '1';	
+	C1 <= not I_SW(6);
+	C2 <= not I_SW(8);	
 
 --	S1 <= not I_SW(5);
 --	S2 <= not I_SW(7);
@@ -517,7 +517,8 @@ begin
 
 	W_CLK_12M <= WB_CLK_12M;
 	W_CLK_6M  <= WB_CLK_6M;
-	W_RESETn  <= I_SW(8) or I_SW(7) or I_SW(6)     or I_SW(5);
+--	W_RESETn  <= I_SW(8) or I_SW(7) or I_SW(6)     or I_SW(5);
+	W_RESETn  <= '1';
 	W_BDO     <= W_SW_DO  or W_VID_DO or W_CPU_RAM_DO or W_CPU_ROM_DOB ;
 
 

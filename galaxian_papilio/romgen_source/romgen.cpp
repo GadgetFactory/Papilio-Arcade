@@ -29,6 +29,7 @@ int main(int argc, char* argv[])
 		cerr << "  b  - Xilinx block ram4  (registered output always)\n";
 		cerr << "  l  - Xilinx block ram16 (registered output always)\n";
 		cerr << "  d  - Xilinx distributed ram [not supported yet]\n";
+		cerr << "  m  - Xilinx mem file\n";
 		cerr << "\n";
 		cerr << "for the registered paramater (optional) use :\n";
 		cerr << "  r  - registered output (combinatorial otherwise) \n";
@@ -63,6 +64,7 @@ int main(int argc, char* argv[])
 	bool format_clock = false;
 	bool format_ram16 = false;
 	bool format_ena = false;
+	bool format_mem = false;
 
 	cerr << "INFO : creating entity : " << argv[2] << "\n";
 
@@ -97,6 +99,8 @@ int main(int argc, char* argv[])
 		cerr << "INFO : block4 ram, registered \n"; format_block = true; format_clock = true; }
 	else if ((rom_type == 'l') || (rom_type == 'L')) {
 		cerr << "INFO : block16 ram, registered \n"; format_block = true; format_clock = true; format_ram16 = true; }
+	else if ((rom_type == 'm') || (rom_type == 'M')) {
+		cerr << "INFO : mem file \n"; format_mem = true; format_clock = true; format_ram16 = true;}		
 	//else if ((rom_type == 'd') || (rom_type == 'D')) {
 	//  cerr << "INFO : distributed ram, combinatorial; \n"; format_dist = true; }
 	else {
@@ -114,7 +118,7 @@ int main(int argc, char* argv[])
 	int max_addr_bits = 16;
 	int rom_inits = 16;
 
-	if (format_block == true) {
+	if (format_block == true || format_mem == true) {
 	  if (format_ram16 == true) {
 		max_addr_bits = 14;
 		rom_inits = 64;
@@ -211,6 +215,87 @@ int main(int argc, char* argv[])
 	fclose(fin);
 
 
+	if (format_mem == true) {
+
+
+	  for (k = 0; k < number_of_block_rams; k ++){
+		//printf("  rom%d : if true generate\n",k);
+
+		for (j = 0; j < rom_inits; j++) {
+		  //printf("    attribute INIT_%02X of inst : label is \042",j);
+		  switch (block_ram_width) {
+
+		  case 1 : // width 1
+		  mask = 0x1 << (k);		  
+		  //for (i = 0; i < 256; i+=8) {
+		  for (i = 248; i >= 0; i-=8) {
+			data  = ((mem[(j*256) + (255 - i)] & mask) >> k);
+			data <<= 1;
+			data += ((mem[(j*256) + (254 - i)] & mask) >> k);
+			data <<= 1;
+			data += ((mem[(j*256) + (253 - i)] & mask) >> k);
+			data <<= 1;
+			data += ((mem[(j*256) + (252 - i)] & mask) >> k);
+			data <<= 1;
+			data += ((mem[(j*256) + (251 - i)] & mask) >> k);
+			data <<= 1;
+			data += ((mem[(j*256) + (250 - i)] & mask) >> k);
+			data <<= 1;
+			data += ((mem[(j*256) + (249 - i)] & mask) >> k);
+			data <<= 1;
+			data += ((mem[(j*256) + (248 - i)] & mask) >> k);
+			printf("%02X ",data);
+		  }
+		  break;
+
+		  case 2 : // width 2
+		  //printf("case 2\n");		  
+		  mask = 0x3 << (k * 2);
+		  //for (i = 0; i < 128; i+=4) {
+		  for (i = 124; i >= 0; i-=4) {
+			data  = ((mem[(j*128) + (127 - i)] & mask) >> k * 2);
+			data <<= 2;
+			data += ((mem[(j*128) + (126 - i)] & mask) >> k * 2);
+			data <<= 2;
+			data += ((mem[(j*128) + (125 - i)] & mask) >> k * 2);
+			data <<= 2;
+			data += ((mem[(j*128) + (124 - i)] & mask) >> k * 2);
+			printf("%02X ",data);
+		  }
+		  break;
+
+		  case 4 : // width 4
+		  printf("case 4\n");		  
+		  mask = 0xF << (k * 4);
+		  for (i = 0; i < 64; i+=2) {
+			data  = ((mem[(j*64) + (63 - i)] & mask) >> k * 4);
+			data <<= 4;
+			data += ((mem[(j*64) + (62 - i)] & mask) >> k * 4);
+
+			printf("%02X ",data);
+		  }
+		  break;
+
+
+		  case 8 : // width 8
+		  //for (i = 0; i < 32; i++) {
+		  //printf("case 8\n");
+		  for (i = 31; i >= 0; i--) {
+			data = ((mem[(j*32) + (31 - i)]));
+			printf("%02X ",data);
+		  }
+		  break;
+		  } // end switch
+
+		  //printf("\042;\n");
+		}	
+	
+	  // for (i = 0; i <= last_nz_addr; i ++ ) {
+		// printf("%02X",i,mem[i]);
+	  }
+	  return 0;
+	} // end case	
+	
 	printf("-- generated with romgen v3.0 by MikeJ\n");
 	printf("library ieee;\n");
 	printf("  use ieee.std_logic_1164.all;\n");
@@ -504,7 +589,8 @@ int main(int argc, char* argv[])
 		printf("    end if;\n");
 	  printf("  end process;\n");
 	//}}}
-	} // end case
+	} // end case	
+	
 	printf("end RTL;\n");
 
 	return 0;

@@ -19,7 +19,8 @@ copy /b/y %rom_path_src%\1h.bin + %rom_path_src%\1k.bin %rom_path%\gfx1.bin > NU
 copy /b/y %rom_path_src%\galmidw.u + %rom_path_src%\galmidw.v + %rom_path_src%\galmidw.w + %rom_path_src%\galmidw.y + %rom_path_src%\7l %rom_path%\main.bin > NUL
 
 REM generate RTL code for small PROMS
-%romgen_path%\romgen %rom_path_src%\6l.bpr    GALAXIAN_6L  5 c     > %rom_path%\galaxian_6l.vhd
+REM %romgen_path%\romgen %rom_path_src%\6l.bpr    GALAXIAN_6L  5 c     > %rom_path%\galaxian_6l.vhd
+%romgen_path%\romgen %rom_path_src%\6l.bpr    GALAXIAN_6L  5 l r e     > %rom_path%\galaxian_6l.vhd
 
 REM generate RAMB structures for larger ROMS
 %romgen_path%\romgen %rom_path%\gfx1.bin        GFX1      12 l r e > %rom_path%\gfx1.vhd
