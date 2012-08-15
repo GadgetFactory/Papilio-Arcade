@@ -1,16 +1,34 @@
 
-NET "au<0>"  LOC = "P14" | IOSTANDARD = LVCMOS33 ; 
-NET "au<1>"  LOC = "P15" | IOSTANDARD = LVCMOS33 ; 
-NET "au<2>"  LOC = "P16" | IOSTANDARD = LVCMOS33 ; 
-NET "au<3>"  LOC = "P17" | IOSTANDARD = LVCMOS33 ; 
-NET "au<4>"  LOC = "P20" | IOSTANDARD = LVCMOS33 ; 
-NET "clk"  LOC = "P128" | IOSTANDARD = LVCMOS33 |  CLOCK_DEDICATED_ROUTE = FALSE;
-NET "cv<0>"  LOC = "P23" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "cv<1>"  LOC = "P25" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "cv<2>"  LOC = "P26" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "cv<3>"  LOC = "P29" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "cv<4>"  LOC = "P32" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "cv<5>"  LOC = "P33" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "cv<6>"  LOC = "P34" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "cv<7>"  LOC = "P35" | IOSTANDARD = LVCMOS33  | DRIVE = 4 ; 
-NET "res"  LOC = "P96" | IOSTANDARD = LVCMOS33  | PULLUP ; 
+NET "O_HSYNC"  LOC = "P95" | IOSTANDARD = LVTTL ; 
+NET "O_VSYNC"  LOC = "P94" | IOSTANDARD = LVTTL ; 
+#NET "clk"  LOC = "P89" | IOSTANDARD = LVCMOS33 |  CLOCK_DEDICATED_ROUTE = FALSE;
+NET "clk" LOC = "P89" | IOSTANDARD = LVTTL | PERIOD = 31.25ns ;
+
+
+NET "res"  LOC = "P67" | IOSTANDARD = LVTTL  | PULLDOWN ; 
+
+
+### original bits
+NET O_VIDEO_R(3)                LOC = "P4" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_G(3)                LOC = "P61" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_B(3)                LOC = "P71" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+# extra bits
+NET O_VIDEO_B(2)                LOC = "P78"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_B(1)                LOC = "P83"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_B(0)                LOC = "P85"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(2)                LOC = "P63" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(1)                LOC = "P66" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_G(0)                LOC = "P68" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(2)                LOC = "P3" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(1)                LOC = "P2" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_R(0)                LOC = "P98" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET "audio"  LOC = "P84" | IOSTANDARD = LVTTL  | DRIVE = 4 ;
+
+NET "p_a"  LOC = "P9" | IOSTANDARD = LVTTL | PULLUP = TRUE;													# Fire
+NET "p_d"  LOC = "P10" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Down
+NET "p_l"  LOC = "P11" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Left
+NET "p_r"  LOC = "P15" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Right
+NET "p_u"  LOC = "P5" | IOSTANDARD = LVTTL | PULLUP = TRUE;													# Up
+NET "p_s"  LOC = "P54" | IOSTANDARD = LVTTL;																		# Reset is Up Pushbutton
+NET "p_bs"  LOC = "P57" | IOSTANDARD = LVTTL;
+NET JOYSTICK_GND        	LOC = "P12"  | IOSTANDARD = LVTTL;# 												# GND 		pin 8 of DB9 Joystick A connector

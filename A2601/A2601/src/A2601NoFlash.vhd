@@ -33,21 +33,37 @@ use ieee.numeric_std.all;
 
 entity A2601NoFlash is
    port (clk: in std_logic;
-         cv: out std_logic_vector(7 downto 0);
-         vsyn: out std_logic;
-         hsyn: out std_logic;
-         au: out std_logic_vector(4 downto 0);
-         res: in std_logic);
+			audio: out std_logic;
+         O_VSYNC: out std_logic;
+         O_HSYNC: out std_logic;
+			O_VIDEO_R: out std_logic_vector(3 downto 0);
+			O_VIDEO_G: out std_logic_vector(3 downto 0);
+			O_VIDEO_B: out std_logic_vector(3 downto 0);			
+--         au: out std_logic_vector(4 downto 0);
+         res: in std_logic;
+         p_l: in std_logic;
+         p_r: in std_logic;
+         p_a: in std_logic;
+         p_u: in std_logic;
+         p_d: in std_logic;
+         p_s: in std_logic;
+         p_bs: out std_logic;			
+         JOYSTICK_GND: out std_logic			
+			);
 end A2601NoFlash;
 
 architecture arch of A2601NoFlash is
 
-    component a2601_dcm is
-        port(clkin_in: in std_logic;
-             rst_in: in std_logic;
-             clkfx_out: out std_logic;
-             clkin_ibufg_out: out std_logic);
-    end component;
+	COMPONENT a2601_dcm
+	PORT(
+		CLKIN_IN : IN std_logic; 
+		RST_IN : IN std_logic; 		
+		CLKFX_OUT : OUT std_logic;
+		CLKIN_IBUFG_OUT : OUT std_logic;
+		CLK0_OUT : OUT std_logic;
+		CLK2X_OUT : OUT std_logic
+		);
+	END COMPONENT;
 
     component A2601 is
     port(vid_clk: in std_logic;
@@ -62,6 +78,7 @@ architecture arch of A2601NoFlash is
          csyn: out std_logic;
          vsyn: out std_logic;
          hsyn: out std_logic;
+			rgbx2: out std_logic_vector(23 downto 0);
          cv: out std_logic_vector(7 downto 0);
          au0: out std_logic;
          au1: out std_logic;
@@ -71,13 +88,39 @@ architecture arch of A2601NoFlash is
          ph1_out: out std_logic);
     end component;
 
-    component cart_rom is
-    port(clk: in std_logic;
-         d: out std_logic_vector(7 downto 0);
-         a: in std_logic_vector(11 downto 0));
-    end component;
+	COMPONENT cart_rom
+	PORT(
+		clk : IN std_logic;
+		a : IN std_logic_vector(12 downto 0);          
+		d : OUT std_logic_vector(7 downto 0)
+		);
+	END COMPONENT;
+	
+	COMPONENT VGA_SCANDBL
+	PORT(
+		I_R : IN std_logic_vector(2 downto 0);
+		I_G : IN std_logic_vector(2 downto 0);
+		I_B : IN std_logic_vector(1 downto 0);
+		I_HSYNC : IN std_logic;
+		I_VSYNC : IN std_logic;
+		CLK : IN std_logic;
+		CLK_X2 : IN std_logic;          
+		O_R : OUT std_logic_vector(2 downto 0);
+		O_G : OUT std_logic_vector(2 downto 0);
+		O_B : OUT std_logic_vector(1 downto 0);
+		O_HSYNC : OUT std_logic;
+		O_VSYNC : OUT std_logic
+		);
+	END COMPONENT;	
+	
+	 component dac is
+	 port(DACout: 	out std_logic;
+			DACin:	in std_logic_vector(4 downto 0);
+			Clk:		in std_logic;
+			Reset:	in std_logic);
+	 end component;	
 
-    signal vid_clk: std_logic;
+    signal vid_clk, vid_clkx2: std_logic;
     signal d: std_logic_vector(7 downto 0);
     signal cpu_d: std_logic_vector(7 downto 0);
     signal a: std_logic_vector(12 downto 0);
@@ -100,26 +143,95 @@ architecture arch of A2601NoFlash is
 
     signal ph0: std_logic;
     signal ph1: std_logic;
+	 
+    signal rgbx2: std_logic_vector(23 downto 0);
+    signal hsyn: std_logic;
+    signal vsyn: std_logic;
+	 
+	 signal ctrl_cntr: unsigned(3 downto 0);
+	 signal gsel: std_logic;
+    signal p_fn: std_logic;
+
+
+	--tmp
+	signal cv:  std_logic_vector(7 downto 0);
+	signal au:  std_logic_vector(4 downto 0);
 
 begin
+	  
+--	Inst_a2601_dcm: a2601_dcm PORT MAP(
+--		CLKIN_IN => clk,
+--		RST_IN => '0',		
+--		CLKFX_OUT => vid_clk,
+--		CLKIN_IBUFG_OUT => open,
+--		CLK0_OUT => open,
+--		CLK2X_OUT => vid_clkx2
+--	);		
 
-    ms_A2601_dcm: a2601_dcm
-        port map(clk, '0', vid_clk, open);
+  u_clocks : entity work.PACMAN_CLOCKS
+    port map (
+      I_CLK_REF  => clk,
+      I_RESET_L  => '1',
+      --
+      O_CLK_REF  => open,
+      --
+      O_ENA_12   => open,
+      O_ENA_6    => open,
+      O_CLK      => vid_clk,
+      O_RESET    => open
+      );	  
 
     ms_A2601: A2601
-        port map(vid_clk, rst, cpu_d, a, pa, pb, inpt4, inpt5, colu, csyn, vsyn, hsyn, cv, au0, au1, av0, av1, ph0, ph1);
+        port map(vid_clk, rst, cpu_d, a, pa, pb, inpt4, inpt5, colu, csyn, vsyn, hsyn, rgbx2, cv, au0, au1, av0, av1, ph0, ph1);
+  
+	Inst_cart_rom: cart_rom PORT MAP(
+		clk => vid_clk,
+		d => d,
+		a => a
+	);		 
 
-    ms_cart_rom: cart_rom
-        port map(ph1, d, a(11 downto 0));
+	dac_inst: dac 
+		port map(audio, au, vid_clk, '0');	
+
+      O_VIDEO_R(3 downto 1) <= rgbx2(23 downto 21);
+      O_VIDEO_G(3 downto 1) <= rgbx2(15 downto 13);
+      O_VIDEO_B(3 downto 2) <= rgbx2(7 downto 6);	
+      O_HSYNC   <= hsyn;
+      O_VSYNC   <= vsyn;	
 
     cpu_d <= d when a(12) = '1' else "ZZZZZZZZ";
 
-    pa <= "11111111";
-    pb(7 downto 1) <= "1111111";
-    pb(0) <= '1';
+    -- Controller inputs sampling
+    p_bs <= ctrl_cntr(3);
 
-    inpt4 <= '1';
+    -- Only one controller port supported.
+    pa(3 downto 0) <= "1111";
+
+    process(ph0)
+    begin
+        if (ph0'event and ph0 = '1') then
+            ctrl_cntr <= ctrl_cntr + 1;
+            if (ctrl_cntr = "1111") then    -- p_bs
+                p_fn <=  p_a;
+                pb(0) <= not p_s;
+            elsif (ctrl_cntr = "0111") then
+                pa(7 downto 4) <= p_r & p_l & p_d & p_u;
+                inpt4 <= p_a;
+                gsel <= not p_s;
+            end if;
+
+            pb(7) <= pa(7) or p_fn;
+            pb(6) <= pa(6) or p_fn;
+            pb(1) <= pa(4) or p_fn;
+            pb(3) <= pa(5) or p_fn;
+        end if;
+    end process;
+
+    pb(5) <= '1';
+    pb(4) <= '1';
+    pb(2) <= '1';
     inpt5 <= '1';
+	 JOYSTICK_GND <= '0';
 
     auv0 <= ("0" & unsigned(av0)) when (au0 = '1') else "00000";
     auv1 <= ("0" & unsigned(av1)) when (au1 = '1') else "00000";

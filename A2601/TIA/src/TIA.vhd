@@ -577,6 +577,7 @@ entity TIA is
          csyn: out std_logic;
          hsyn: out std_logic;
          vsyn: out std_logic;
+			rgbx2: out std_logic_vector(23 downto 0);
          cv: out std_logic_vector(7 downto 0) := "00000000";
          rdy: out std_logic;
          ph0: out std_logic;
@@ -591,6 +592,33 @@ entity TIA is
 end TIA;
 
 architecture arch of TIA is
+
+	COMPONENT VGA_SCANDBL
+	PORT(
+		I_R : IN std_logic_vector(2 downto 0);
+		I_G : IN std_logic_vector(2 downto 0);
+		I_B : IN std_logic_vector(1 downto 0);
+		I_HSYNC : IN std_logic;
+		I_VSYNC : IN std_logic;
+		CLK : IN std_logic;
+		CLK_X2 : IN std_logic;          
+		O_R : OUT std_logic_vector(2 downto 0);
+		O_G : OUT std_logic_vector(2 downto 0);
+		O_B : OUT std_logic_vector(1 downto 0);
+		O_HSYNC : OUT std_logic;
+		O_VSYNC : OUT std_logic
+		);
+	END COMPONENT;	
+	
+	COMPONENT VGAColorTable
+	PORT(
+		clk : IN std_logic;
+		lum : IN std_logic_vector(3 downto 0);
+		hue : IN std_logic_vector(3 downto 0);
+		mode : IN std_logic_vector(1 downto 0);          
+		outColor : OUT std_logic_vector(23 downto 0)
+		);
+	END COMPONENT;	
 
     component cntr2 is
         port(clk: in std_logic;
@@ -773,7 +801,7 @@ architecture arch of TIA is
     signal hh1: std_logic;
     signal hh1_edge: std_logic;
 
-    signal clk: std_logic;
+    signal clk, clkx2: std_logic;
 
     signal sync: std_logic;
     signal blank: std_logic;
@@ -784,6 +812,10 @@ architecture arch of TIA is
     signal col_lu: unsigned(7 downto 0);
 
     signal vid_clk_dvdr: unsigned(3 downto 0) := "0000";
+	 
+	 signal rgb: std_logic_vector(23 downto 0);
+	 signal vga_lum: std_logic_vector(3 downto 0);
+
 
 begin
 
@@ -862,8 +894,8 @@ begin
     end process;
 
     csyn <= (vsync nand hsync) and (vsync or hsync);
-    vsyn <= vsync;
-    hsyn <= hsync;
+--    vsyn <= vsync;
+--    hsyn <= hsync;
 
     rdy <= '0' when (wsync = '1') else '1';
 
@@ -1284,6 +1316,38 @@ begin
     end process;
 
     clk <= vid_clk_dvdr(3);
+    clkx2 <= vid_clk_dvdr(2);
+	 
+	Inst_VGA_SCANDBL: VGA_SCANDBL PORT MAP(
+		I_R => rgb(23 downto 21),
+		I_G => rgb(15 downto 13),
+		I_B => rgb(7 downto 6),
+		I_HSYNC => hsync,
+		I_VSYNC => vsync,
+		O_R => rgbx2(23 downto 21),
+		O_G => rgbx2(15 downto 13),
+		O_B => rgbx2(7 downto 6),
+		O_HSYNC => hsyn,
+		O_VSYNC => vsyn,
+		CLK => clk,
+		CLK_X2 => clkx2
+	);	
+	
+	Inst_VGAColorTable: VGAColorTable PORT MAP(
+		clk => clk,
+		lum => vga_lum,
+		hue => int_colu(6 downto 3),
+		mode => "00",	--NTSC
+		outColor => rgb
+	);	
+		
+	vga_lum <= '0' & int_colu(2 downto 0);
+
+--      O_VIDEO_R(3 downto 1) <= video_r_x2;
+--      O_VIDEO_G(3 downto 1) <= video_g_x2;
+--      O_VIDEO_B(3 downto 2) <= video_b_x2;	
+--      O_HSYNC   <= hsync_x2;
+--      O_VSYNC   <= vsyn;		 
 
     col_lut_idx <=
         "0001" & (not vid_clk_dvdr(3)) & vid_clk_dvdr(2) & vid_clk_dvdr(1) & vid_clk_dvdr(0) when (cburst = '1') else

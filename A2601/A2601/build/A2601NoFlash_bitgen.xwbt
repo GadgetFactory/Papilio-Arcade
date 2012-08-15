@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\killian\Dropbox\GadgetFactory\Papilio-Arcade\A2601_vga_attempt_2\A2601\build\A2601NoFlash.ncd
+OUTFILE=C:\Users\killian\Dropbox\GadgetFactory\Papilio-Arcade\A2601_vga_attempt_2\A2601\build\A2601NoFlash.bit
+FAMILY=Spartan3E
+PART=xc3s500e-4vq100
+WORKINGDIR=C:\Users\killian\Dropbox\GadgetFactory\Papilio-Arcade\A2601_vga_attempt_2\A2601\build
+LICENSE=WebPack
+USER_INFO=175441551_0_0_650
