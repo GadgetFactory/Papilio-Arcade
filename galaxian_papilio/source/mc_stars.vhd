@@ -50,7 +50,7 @@ architecture RTL of MC_STARS is
 begin
 
 	W_V_SYNCn <= not I_V_SYNC;
-	CLK_1C    <= not (I_CLK_18M and I_CLK_6M and W_V_SYNCn and I_256HnX);
+	CLK_1C    <= not (I_CLK_18M and not I_CLK_6M and W_V_SYNCn and I_256HnX);
 	CLK_1AB   <= not (CLK_1C or (not (I_H_FLIP or W_1C_Q2)));
 	W_3B      <= W_2D_Qn xor W_1AB_Q(4);
 
