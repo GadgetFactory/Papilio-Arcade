@@ -60,7 +60,7 @@ library UNISIM;
 
 entity invaders_top is
 	port(
-    I_BUTTON          : in    std_logic_vector(4 downto 0);
+    I_BUTTON          : in    std_logic_vector(7 downto 0);
 		--
 		O_VIDEO_R         : out   std_logic;
 		O_VIDEO_G         : out   std_logic;
@@ -103,8 +103,8 @@ architecture rtl of invaders_top is
 	signal SoundCtrl3      : std_logic_vector(5 downto 0);
 	signal SoundCtrl5      : std_logic_vector(5 downto 0);
 
-	signal Buttons         : std_logic_vector(5 downto 0);
-	signal Buttons_n       : std_logic_vector(5 downto 1);
+	signal Buttons         : std_logic_vector(8 downto 0);
+	signal Buttons_n       : std_logic_vector(8 downto 1);
 
 	signal Tick1us         : std_logic;
 
@@ -124,8 +124,8 @@ architecture rtl of invaders_top is
 	signal Overlay_R1      : boolean;
 	signal Overlay_G1_VCnt : boolean;
   --
-  signal button_in        : std_logic_vector(4 downto 0);
-  signal button_debounced : std_logic_vector(4 downto 0);
+  signal button_in        : std_logic_vector(7 downto 0);
+  signal button_debounced : std_logic_vector(7 downto 0);
 	--
 	signal Audio           : std_logic_vector(7 downto 0);
 	signal AudioPWM        : std_logic;
@@ -151,7 +151,7 @@ begin
 	   O_CLK_X2   => Clk_x2
 	 );
 
-	Buttons_n <= not Buttons(5 downto 1);
+	Buttons_n <= not Buttons(8 downto 1);
 	DIP <= "00000000";
 
 	core : entity work.invaders
@@ -160,8 +160,8 @@ begin
 			Clk        => Clk,
 			MoveLeft   => Buttons(0),
 			MoveRight  => Buttons(1),
-			Coin       => Buttons(2),
-			Sel1Player => Buttons(3),
+			Coin       => Buttons(6),
+			Sel1Player => Buttons(7),
 			Fire       => Buttons(4),
 			DIP        => DIP,
 			RDB        => RDB,
@@ -269,11 +269,11 @@ begin
 	end process;
 
 
-  button_in(4 downto 0) <= I_BUTTON(4 downto 0);
+  button_in(7 downto 0) <= I_BUTTON(7 downto 0);
 
   u_debounce : entity work.BUTTON_DEBOUNCE
   generic map (
-    G_WIDTH => 5
+    G_WIDTH => 8
     )
   port map (
     I_BUTTON => button_in,
@@ -292,8 +292,8 @@ begin
 		else
 			Buttons(0) <= button_debounced(2); -- Left
 			Buttons(1) <= button_debounced(3); -- Right
-			Buttons(2) <= button_debounced(0); -- Coin
-			Buttons(3) <= button_debounced(1); -- Player1
+			Buttons(2) <= button_debounced(6); -- Coin
+			Buttons(3) <= button_debounced(7); -- Player1
 			Buttons(4) <= button_debounced(4); -- Fire
 		end if;
 	end process;

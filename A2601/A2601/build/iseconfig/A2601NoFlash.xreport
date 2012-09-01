@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2012-08-15T11:41:39</DateModified>
+  <DateModified>2012-08-26T00:01:48</DateModified>
   <ModuleName>A2601NoFlash</ModuleName>
-  <SummaryTimeStamp>2012-04-19T13:04:56</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/killian/Dropbox/GadgetFactory/GadgetFactory_Engineering/Papilio-Arcade/A2601/A2601/build/iseconfig/A2601NoFlash.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/killian/Dropbox/GadgetFactory/GadgetFactory_Engineering/Papilio-Arcade/A2601/A2601/build\</ImplementationReportsDirectory>
+  <SummaryTimeStamp>2012-08-25T23:22:01</SummaryTimeStamp>
+  <SavedFilePath>C:/Users/ville/Documents/GitHub/Papilio-Arcade/A2601/A2601/build/iseconfig/A2601NoFlash.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/ville/Documents/GitHub/Papilio-Arcade/A2601/A2601/build\</ImplementationReportsDirectory>
   <DateInitialized>2011-09-17T15:43:39</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

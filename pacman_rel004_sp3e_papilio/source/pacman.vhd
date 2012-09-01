@@ -781,7 +781,7 @@ begin
       in0_reg(1) <= button_debounced(2); 		-- p1 left
       in0_reg(0) <= button_debounced(0); 		-- p1 up
 
-      in1_reg(7) <= '0'; 							-- table
+      in1_reg(7) <= '1'; 							-- table 1-upright 0-cocktail
       in1_reg(6) <= not button_debounced(8); -- start2		RIGHT PushButton
       in1_reg(5) <= not button_debounced(5); -- start1		LEFT PushButton
       in1_reg(4) <= button_debounced(4);		-- test and fire	

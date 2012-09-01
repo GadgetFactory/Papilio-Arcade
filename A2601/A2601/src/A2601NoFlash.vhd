@@ -90,9 +90,9 @@ architecture arch of A2601NoFlash is
 
 	COMPONENT cart_rom
 	PORT(
-		clk : IN std_logic;
-		a : IN std_logic_vector(12 downto 0);          
-		d : OUT std_logic_vector(7 downto 0)
+		CLK : IN std_logic;
+		ADDR : IN std_logic_vector(12 downto 0);          
+		DATA : OUT std_logic_vector(7 downto 0)
 		);
 	END COMPONENT;
 	
@@ -185,9 +185,9 @@ begin
         port map(vid_clk, rst, cpu_d, a, pa, pb, inpt4, inpt5, colu, csyn, vsyn, hsyn, rgbx2, cv, au0, au1, av0, av1, ph0, ph1);
   
 	Inst_cart_rom: cart_rom PORT MAP(
-		clk => vid_clk,
-		d => d,
-		a => a
+		CLK => vid_clk,
+		DATA => d,
+		ADDR => a
 	);		 
 
 	dac_inst: dac 
