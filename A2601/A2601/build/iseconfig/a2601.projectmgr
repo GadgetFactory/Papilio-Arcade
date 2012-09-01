@@ -23,19 +23,20 @@
          <ClosedNode>/A2601NoFlash - arch C:|Users|killian|Dropbox|GadgetFactory|Papilio-Arcade|A2601_vga_attempt_2|A2601|src|A2601NoFlash.vhd/ms_A2601 - A2601 - arch/tia_inst - TIA - arch/m1 - missile - arch</ClosedNode>
          <ClosedNode>/A2601NoFlash - arch C:|Users|killian|Dropbox|GadgetFactory|Papilio-Arcade|A2601_vga_attempt_2|A2601|src|A2601NoFlash.vhd/ms_A2601 - A2601 - arch/tia_inst - TIA - arch/p0 - player - arch</ClosedNode>
          <ClosedNode>/A2601NoFlash - arch C:|Users|killian|Dropbox|GadgetFactory|Papilio-Arcade|A2601_vga_attempt_2|A2601|src|A2601NoFlash.vhd/ms_A2601 - A2601 - arch/tia_inst - TIA - arch/p1 - player - arch</ClosedNode>
+         <ClosedNode>/A2601NoFlash - arch C:|Users|ville|Documents|GitHub|Papilio-Arcade|A2601|A2601|src|A2601NoFlash.vhd/ms_A2601 - A2601 - arch</ClosedNode>
          <ClosedNode>/bench - bench C:|Users|Jack|Dropbox|GadgetFactory|archive|kit-arcade|A2601-0.1.0|A2601|A2601|src|Bench.vhd</ClosedNode>
          <ClosedNode>/bench - bench C:|Users|Jack|Dropbox|GadgetFactory|archive|kit-arcade|A2601-0.1.0|A2601|A6500|src|Bench.vhd</ClosedNode>
          <ClosedNode>/bench - bench C:|Users|Jack|Dropbox|GadgetFactory|archive|kit-arcade|A2601-0.1.0|A2601|A6532|src|Bench.vhd</ClosedNode>
          <ClosedNode>/bench - bench C:|Users|Jack|Dropbox|GadgetFactory|archive|kit-arcade|A2601-0.1.0|A2601|TIA|src|Bench.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>Inst_cart_rom - cart_rom - arch (C:/Users/killian/Dropbox/GadgetFactory/GadgetFactory_Engineering/Papilio-Arcade/A2601/A2601/src/cart_rom.vhd)</SelectedItem>
+         <SelectedItem>A2601NoFlash - arch (C:/Users/ville/Documents/GitHub/Papilio-Arcade/A2601/A2601/src/A2601NoFlash.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >18</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001dd000000020000000000000000000000000200000064ffffffff000000810000000300000002000001dd0000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001a3000000020000000000000000000000000200000064ffffffff000000810000000300000002000001a30000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>Inst_cart_rom - cart_rom - arch (C:/Users/killian/Dropbox/GadgetFactory/GadgetFactory_Engineering/Papilio-Arcade/A2601/A2601/src/cart_rom.vhd)</CurrentItem>
+      <CurrentItem>A2601NoFlash - arch (C:/Users/ville/Documents/GitHub/Papilio-Arcade/A2601/A2601/src/A2601NoFlash.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -43,13 +44,13 @@
          <ClosedNode>Design Utilities</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000155000000010000000100000000000000000000000064ffffffff000000810000000000000001000001550000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f8000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView guiview="File" >
       <ClosedNodes>
@@ -58,7 +59,7 @@
       <SelectedItems/>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000003a3000000040101000100000000000000000000000064ffffffff000000810000000000000004000000420000000100000000000000240000000100000000000000660000000100000000000002d70000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000002a2000000040101000100000000000000000000000064ffffffff000000810000000000000004000000420000000100000000000000240000000100000000000000660000000100000000000001d60000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>A2601Core.vhd</CurrentItem>
    </ItemView>
@@ -82,13 +83,13 @@
          <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem>Generate Programming File</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >5</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001e6000000010000000100000000000000000000000064ffffffff000000810000000000000001000001e60000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000e7000000010000000100000000000000000000000064ffffffff000000810000000000000001000000e70000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem>Generate Programming File</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
       <ClosedNodes>
@@ -123,13 +124,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000189000000010000000100000000000000000000000064ffffffff000000810000000000000001000001890000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f8000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_XAW" guiview="Process" >
       <ClosedNodes>

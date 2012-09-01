@@ -31,6 +31,7 @@ entity galaxian_top is
 		--    INPORT SW IF
 		I_SW         : in  std_logic_vector(8 downto 0);
 		JOYSTICK_GND			  : out	 std_logic;
+		I_RESET_SWn		 : in std_logic;
 
 		--    SOUND OUT
 		O_AUDIO_L : out std_logic;
@@ -518,7 +519,8 @@ begin
 	W_CLK_12M <= WB_CLK_12M;
 	W_CLK_6M  <= WB_CLK_6M;
 --	W_RESETn  <= I_SW(8) or I_SW(7) or I_SW(6)     or I_SW(5);
-	W_RESETn  <= '1';
+--	W_RESETn  <= '1';
+	W_RESETn  <= not I_RESET_SWn;
 	W_BDO     <= W_SW_DO  or W_VID_DO or W_CPU_RAM_DO or W_CPU_ROM_DOB ;
 
 
