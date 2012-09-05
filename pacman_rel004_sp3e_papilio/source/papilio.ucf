@@ -87,72 +87,57 @@ NET O_AUDIO_R                   LOC = "P86"  | IOSTANDARD = LVTTL | SLEW = SLOW 
 ##########End of Section for Papilio Arcade MegaWing ###############################################
 
 ###########Uncomment this section for the Papilio LogicStart MegaWing ##########################################
-### original bits
-##NET O_VIDEO_R(3)                LOC = "P61" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-##NET O_VIDEO_G(3)                LOC = "P68" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-##NET O_VIDEO_B(3)                LOC = "P78" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-### extra bits
-##NET O_VIDEO_B(2)                LOC = "P71"  | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-###NET O_VIDEO_B(1)                LOC = "P"  | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-###NET O_VIDEO_B(0)                LOC = "P"  | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-##NET O_VIDEO_G(2)                LOC = "P66" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-##NET O_VIDEO_G(1)                LOC = "P63" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-###NET O_VIDEO_G(0)                LOC = "P" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-##NET O_VIDEO_R(2)                LOC = "P58" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-##NET O_VIDEO_R(1)                LOC = "P54" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-###NET O_VIDEO_R(0)                LOC = "P" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-#
-#
+###########Update the top level VHDL file too.##################################################################
 ## original bits
-#NET O_VIDEO_R(3)                LOC = "P54" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-#NET O_VIDEO_G(3)                LOC = "P63" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-#NET O_VIDEO_B(3)                LOC = "P71" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_R(3)                LOC = "P54" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_G(3)                LOC = "P63" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_B(3)                LOC = "P71" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
 ## extra bits
-#NET O_VIDEO_B(2)                LOC = "P78"  | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-##NET O_VIDEO_B(1)                LOC = "P"  | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-##NET O_VIDEO_B(0)                LOC = "P"  | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-#NET O_VIDEO_G(2)                LOC = "P66" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-#NET O_VIDEO_G(1)                LOC = "P68" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-##NET O_VIDEO_G(0)                LOC = "P" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-#NET O_VIDEO_R(2)                LOC = "P58" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-#NET O_VIDEO_R(1)                LOC = "P61" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
-##NET O_VIDEO_R(0)                LOC = "P" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_B(2)                LOC = "P78"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_B(1)                LOC = "P84"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;  	#Just connected to SPI Output.	
+#NET O_VIDEO_B(0)                LOC = "P5"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 	#Just connected to LED's. 
+#NET O_VIDEO_G(2)                LOC = "P66" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_G(1)                LOC = "P68" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VIDEO_G(0)                LOC = "P9" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 		#Just connected to LED's.
+#NET O_VIDEO_R(2)                LOC = "P58" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_R(1)                LOC = "P61" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_R(0)                LOC = "P10" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 		#Just connected to LED's.
 #
-#NET O_HSYNC                     LOC = "P83" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-#NET O_VSYNC                     LOC = "P85" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
+#NET O_HSYNC                     LOC = "P83" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_VSYNC                     LOC = "P85" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
 #
 ## Tactile Pushbuttons
-#NET I_SW(3)                     LOC = "P91" | IOSTANDARD = LVCMOS25;	#	Right Pushbutton - Start 2
-#NET I_SW(2)                     LOC = "P92" | IOSTANDARD = LVCMOS25;	#	Down Pushbutton - Coin 1
-#NET I_SW(1)                     LOC = "P94" | IOSTANDARD = LVCMOS25;	#	Up Pushbutton - Coin 2
-#NET I_SW(0)                     LOC = "P95" | IOSTANDARD = LVCMOS25;	#	Left Pushbutton - Start 1
+#NET I_SW(3)                     LOC = "P91" | IOSTANDARD = LVTTL;	#	Right Pushbutton - Start 2
+#NET I_SW(2)                     LOC = "P92" | IOSTANDARD = LVTTL;	#	Down Pushbutton - Coin 1
+#NET I_SW(1)                     LOC = "P94" | IOSTANDARD = LVTTL;	#	Up Pushbutton - Coin 2
+#NET I_SW(0)                     LOC = "P95" | IOSTANDARD = LVTTL;	#	Left Pushbutton - Start 1
 #
 ## Papilio Arcade MegaWing - Joystick A
-#NET "I_JOYSTICK_A(0)"               LOC = "P25"  | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Up
-#NET "I_JOYSTICK_A(2)"               LOC = "P34" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Left	
-#NET "I_JOYSTICK_A(3)"               LOC = "P36" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Right	
-#NET "I_JOYSTICK_A(1)"               LOC = "P32" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Down 	
-#NET "I_JOYSTICK_A(4)"               LOC = "P22" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Fire 
-#NET "JOYSTICK_A_GND"              LOC = "P9"  | IOSTANDARD = LVCMOS25 | PULLDOWN; # 	GND
+#NET "I_JOYSTICK_A(0)"               LOC = "P25"  | IOSTANDARD = LVTTL | PULLUP ; # 	Up
+#NET "I_JOYSTICK_A(2)"               LOC = "P34" | IOSTANDARD = LVTTL | PULLUP ; # 	Left	
+#NET "I_JOYSTICK_A(3)"               LOC = "P36" | IOSTANDARD = LVTTL | PULLUP ; # 	Right	
+#NET "I_JOYSTICK_A(1)"               LOC = "P32" | IOSTANDARD = LVTTL | PULLUP ; # 	Down 	
+#NET "I_JOYSTICK_A(4)"               LOC = "P22" | IOSTANDARD = LVTTL | PULLUP ; # 	Fire 
+#NET "JOYSTICK_A_GND"              LOC = "P86"  | IOSTANDARD = LVTTL | PULLDOWN; # 	GND
 #
 ## Papilio Arcade MegaWing - Joystick B
-#NET "I_JOYSTICK_B(0)"               LOC = "P98"  | IOSTANDARD = LVCMOS25 | PULLUP ; #  Up
-#NET "I_JOYSTICK_B(2)"               LOC = "P2" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Left	
-#NET "I_JOYSTICK_B(3)"               LOC = "P3" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Right
-#NET "I_JOYSTICK_B(1)"               LOC = "P4" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Down
-#NET "I_JOYSTICK_B(4)"               LOC = "P5" | IOSTANDARD = LVCMOS25 | PULLUP ; # 	Fire
-#NET "JOYSTICK_B_GND"          	  LOC = "P10"  | IOSTANDARD = LVCMOS25 | PULLDOWN; # 	GND
+#NET "I_JOYSTICK_B(0)"               LOC = "P98"  | IOSTANDARD = LVTTL | PULLUP ; #  Up
+#NET "I_JOYSTICK_B(2)"               LOC = "P2" | IOSTANDARD = LVTTL | PULLUP ; # 	Left	
+#NET "I_JOYSTICK_B(3)"               LOC = "P3" | IOSTANDARD = LVTTL | PULLUP ; # 	Right
+#NET "I_JOYSTICK_B(1)"               LOC = "P4" | IOSTANDARD = LVTTL | PULLUP ; # 	Down
+#NET "I_JOYSTICK_B(4)"               LOC = "P69" | IOSTANDARD = LVTTL | PULLUP ; # 	Fire	#Unused input
+#NET "JOYSTICK_B_GND"          	  LOC = "P11"  | IOSTANDARD = LVTTL | PULLDOWN; # 	GND
 #
 ## No real use for the LED's
-##NET O_LED(3)                    LOC = "P11" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-#NET O_LED(2)                    LOC = "P12" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;
-#NET O_LED(1)                    LOC = "P15" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ;		# P2 Start Lamp
-#NET O_LED(0)                    LOC = "P16" | IOSTANDARD = LVCMOS25 | DRIVE = 8 | SLEW = FAST ; 	# P1 Start Lamp
+##NET O_LED(3)                    LOC = "P11" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_LED(2)                    LOC = "P12" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_LED(1)                    LOC = "P15" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;		# P2 Start Lamp
+#NET O_LED(0)                    LOC = "P16" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 	# P1 Start Lamp
 #
-#NET I_RESET                     LOC = "P30" | IOSTANDARD = LVCMOS25 | PULLDOWN ; # 	Empty Pin
+#NET I_RESET                     LOC = "P30" | IOSTANDARD = LVTTL | PULLDOWN ; # 	Empty Pin
 #
-#NET O_AUDIO_L                   LOC = "P41"  | IOSTANDARD = LVCMOS25 | SLEW = SLOW | DRIVE = 8;	#
-#NET O_AUDIO_R                   LOC = "P17"  | IOSTANDARD = LVCMOS25 | SLEW = SLOW | DRIVE = 8;	#
+#NET O_AUDIO_L                   LOC = "P41"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;	#
+#NET O_AUDIO_R                   LOC = "P17"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;	#
 ###########End of Section for Papilio LogicStart MegaWing ###############################################
 
 ##########Uncomment this section for the Papilio Arcade Kit ##########################################
