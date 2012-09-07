@@ -160,8 +160,9 @@ begin
 			Clk        => Clk,
 			MoveLeft   => Buttons(0),
 			MoveRight  => Buttons(1),
-			Coin       => Buttons(6),
-			Sel1Player => Buttons(7),
+			Coin       => Buttons(2),
+			Sel1Player => Buttons(3),
+			Sel2Player => Buttons(5), --added 2p start
 			Fire       => Buttons(4),
 			DIP        => DIP,
 			RDB        => RDB,
@@ -295,6 +296,7 @@ begin
 			Buttons(2) <= button_debounced(6); -- Coin
 			Buttons(3) <= button_debounced(7); -- Player1
 			Buttons(4) <= button_debounced(4); -- Fire
+			Buttons(5) <= button_debounced(5); --2Player start
 		end if;
 	end process;
   --

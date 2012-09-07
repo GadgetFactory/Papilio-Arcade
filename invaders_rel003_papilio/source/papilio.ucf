@@ -122,10 +122,10 @@ NET JOYSTICK_GND        	LOC = "P12"  | IOSTANDARD = LVTTL;# 												# GND 	
 ##NET Joystick_9				LOC = "P26"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# ?			pin 9 of DB9 Joystick B connector
 
 #Push buttons																													#Purpose		#Arcade MegaWing Location
-NET I_BUTTON(5)						LOC = "P36"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ;  			# start 2	RIGHT button
-NET I_BUTTON(6)					LOC = "P54"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  | PULLUP;  			# unused		UP button
+NET I_BUTTON(5)						LOC = "P36"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# start 2	RIGHT button
+NET I_BUTTON(6)					LOC = "P54"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# unused		UP button
 #NET I_SW(1)						LOC = "P41"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  | PULLUP;  			# credit		DOWN button
-NET I_BUTTON(7)						LOC = "P58"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  | PULLUP;				# start 1	LEFT button
+NET I_BUTTON(7)						LOC = "P58"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST   ;				# start 1	LEFT button
 
 NET I_RESET						LOC = "P67"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLDOWN ; # reset
 
