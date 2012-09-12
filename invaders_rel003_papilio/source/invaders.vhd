@@ -60,6 +60,7 @@ entity invaders is
 		Clk             : in  std_logic;
 		Coin            : in  std_logic;
 		Sel1Player      : in  std_logic;
+		Sel2Player		 : in  std_logic;
 		Fire            : in  std_logic;
 		MoveLeft        : in  std_logic;
 		MoveRight       : in  std_logic;
@@ -205,8 +206,8 @@ begin
 	GDB0(7) <= DIP(5);  -- Unused ?
 
 	GDB1(0) <= not Coin;
-	GDB1(1) <= '1';             -- Unused ?
-	GDB1(2) <= not Sel1Player;
+	GDB1(1) <=  Sel2Player;             -- Unused ? -- no, this is 2 player start
+	GDB1(2) <=  Sel1Player; --was not
 	GDB1(3) <= '1';             -- Unused ?
 	GDB1(4) <= not Fire;
 	GDB1(5) <= not MoveLeft;
