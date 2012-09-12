@@ -46,11 +46,21 @@ entity A2601NoFlash is
          p_a: in std_logic;
          p_u: in std_logic;
          p_d: in std_logic;
+         p2_l: in std_logic;
+         p2_r: in std_logic;
+         p2_a: in std_logic;
+         p2_u: in std_logic;
+         p2_d: in std_logic;
+			
          p_s: in std_logic;
          p_bs: out std_logic;			
-			--LED: out std_logic_vector(2 downto 0);
+			LED: out std_logic_vector(2 downto 0);
+			
 			I_SW :in std_logic_vector(2 downto 0);
-         JOYSTICK_GND: out std_logic			
+			
+			
+         JOYSTICK_GND: out std_logic			;
+			JOYSTICK2_GND: out std_logic	
 			);
 end A2601NoFlash;
 
@@ -206,7 +216,11 @@ architecture arch of A2601NoFlash is
 	--tmp
 	signal cv:  std_logic_vector(7 downto 0);
 	signal au:  std_logic_vector(4 downto 0);
-
+-- switches
+	signal sw_toggle: std_logic_vector(2 downto 0) := "000";
+	
+	signal sw_pressed: std_logic_vector(2 downto 0) := "000";
+	
     constant BANK00: bss_type := "000";
     constant BANKF8: bss_type := "001";
     constant BANKF6: bss_type := "010";
@@ -276,37 +290,65 @@ begin
     end process;
 
     -- Controller inputs sampling
-    p_bs <= ctrl_cntr(3);
+    p_bs <= '0'; --- led0 ctrl_cntr(3);
 
-    -- Only one controller port supported.
-    pa(3 downto 0) <= "1111";
-
+    -- Only one controller port supported. -- FIXME -- does 2nd port work ?
+    -- pa(3 downto 0) <= "1111";
+	 
     process(ph0)
     begin
         if (ph0'event and ph0 = '1') then
             ctrl_cntr <= ctrl_cntr + 1;
             if (ctrl_cntr = "1111") then    -- p_bs
                 p_fn <=  p_a;
-                pb(0) <= not p_s;
+                pb(0) <= not p_s; 
             elsif (ctrl_cntr = "0111") then
                 pa(7 downto 4) <= p_r & p_l & p_d & p_u;
+					 pa(3 downto 0) <= p2_r & p2_l & p2_d & p2_u;
                 inpt4 <= p_a;
+					 inpt5 <= p2_a;
                 gsel <= not p_s;
+					 
+					 --switches
+					 for i in 0 to 1
+					 loop
+						if I_SW(i) = '1' then
+							if sw_pressed(i) = '0' then
+								sw_pressed(i) <= '1';
+								sw_toggle(i)  <= NOT(sw_toggle(i));
+							end if;
+						else
+							sw_pressed(i) <= '0';
+						end if;
+					end loop;
+					 sw_toggle(2) <= NOT(I_SW(2)); --momentary, not slide toggle -- should this be active low ?
             end if;
 
-            pb(7) <= pa(7) or p_fn;
-            pb(6) <= pa(6) or p_fn;
-            pb(1) <= pa(4) or p_fn;
-            pb(3) <= pa(5) or p_fn;
+           -- pb(7) <= pa(7) or p_fn; --sw1
+           -- pb(6) <= pa(6) or p_fn; --sw2
+           -- pb(1) <= pa(4) or p_fn; --select
+           -- pb(3) <= pa(5) or p_fn; --b/w / colour
         end if;
     end process;
-
-    pb(5) <= '1';
-    pb(4) <= '1';
-    pb(2) <= '1';
-    inpt5 <= '1';
+	 pb(7) <= sw_toggle(0);
+	 pb(6) <= sw_toggle(1);
+	 pb(1) <= sw_toggle(2);
+	 pb(3) <= '0'; --not used
+    pb(5) <= '1'; --nc ?
+    pb(4) <= '1'; --nc
+    pb(2) <= '1'; --nc
+	 
+    -- inpt5 <= '1'; --FIXME --remove line if 2p works
+	 -- leds to show state of switches
+	 -- led1 difficulty switch 1 on/off
+	 -- led2 difficulty switch 2 on/off
+	 -- led3 select switch on/off
+	 LED(1 downto 0) <=sw_toggle(1 downto 0);
+	 LED(2) <= not sw_toggle(2); --active low;
+	 
 	 JOYSTICK_GND <= '0';
-
+	 JOYSTICK2_GND <= '0';
+	 
     auv0 <= ("0" & unsigned(av0)) when (au0 = '1') else "00000";
     auv1 <= ("0" & unsigned(av1)) when (au1 = '1') else "00000";
 
