@@ -195,7 +195,7 @@ begin
 	process(I_CLK)
 	begin
 		if falling_edge(I_CLK) then
-			O_Dn <= not W_D;
+			O_Dn <= not W_D(4 downto 0);
 		end if;
 	end process;
 

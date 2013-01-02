@@ -102,46 +102,25 @@ architecture RTL of SCRAMBLE_CLOCKS is
   -- This runs the game at 6.15 MHz which is only 0.16% faster.
   --
   -- (The scan doubler requires a x2 freq clock)
-  function str2bool (str : string) return boolean is
-  begin
-    if (str = "TRUE") or (str = "true") then
-      return TRUE;
-    else
-      return FALSE;
-    end if;
-  end str2bool;
+
 
 begin
 
   reset_dcm_h <= not I_RESET_L;
   IBUFG0 : IBUFG port map (I=> I_CLK_REF, O => clk_ref_ibuf);
 
-  dcma   : if true generate
-    attribute DLL_FREQUENCY_MODE    of dcm_inst : label is "LOW";
-    attribute DUTY_CYCLE_CORRECTION of dcm_inst : label is "TRUE";
-    attribute CLKOUT_PHASE_SHIFT    of dcm_inst : label is "NONE";
-    attribute PHASE_SHIFT           of dcm_inst : label is 0;
-    attribute CLKFX_MULTIPLY        of dcm_inst : label is 10;
-    attribute CLKFX_DIVIDE          of dcm_inst : label is 13;
-    attribute CLKDV_DIVIDE          of dcm_inst : label is 2.0;
-    attribute STARTUP_WAIT          of dcm_inst : label is "FALSE";
-    attribute CLKIN_PERIOD          of dcm_inst : label is 31.25;
-    --
-    begin
     dcm_inst : DCM
-    -- pragma translate_off
       generic map (
-        DLL_FREQUENCY_MODE    => dcm_inst'DLL_FREQUENCY_MODE,
-        DUTY_CYCLE_CORRECTION => str2bool(dcm_inst'DUTY_CYCLE_CORRECTION),
-        CLKOUT_PHASE_SHIFT    => dcm_inst'CLKOUT_PHASE_SHIFT,
-        PHASE_SHIFT           => dcm_inst'PHASE_SHIFT,
-        CLKFX_MULTIPLY        => dcm_inst'CLKFX_MULTIPLY,
-        CLKFX_DIVIDE          => dcm_inst'CLKFX_DIVIDE,
-        CLKDV_DIVIDE          => dcm_inst'CLKDV_DIVIDE,
-        STARTUP_WAIT          => str2bool(dcm_inst'STARTUP_WAIT),
-        CLKIN_PERIOD          => dcm_inst'CLKIN_PERIOD
+        DLL_FREQUENCY_MODE    => "LOW",
+        DUTY_CYCLE_CORRECTION => TRUE,
+        CLKOUT_PHASE_SHIFT    => "NONE",
+        PHASE_SHIFT           => 0,
+        CLKFX_MULTIPLY        => 10,
+        CLKFX_DIVIDE          => 13,
+        CLKDV_DIVIDE          => 2.0,
+        STARTUP_WAIT          => FALSE,
+        CLKIN_PERIOD          => 31.25
        )
-    -- pragma translate_on
       port map (
         CLKIN    => clk_ref_ibuf,
         CLKFB    => clk_dcm_0_bufg,
@@ -162,7 +141,6 @@ begin
         LOCKED   => dcm_locked,
         PSDONE   => open
        );
-  end generate;
 
 
   BUFG0 : BUFG port map (I=> clk_dcm_op_0,  O => clk_dcm_0_bufg);

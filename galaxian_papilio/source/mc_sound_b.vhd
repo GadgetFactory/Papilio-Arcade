@@ -63,7 +63,7 @@ begin
 	W_WAV_D0 <= I_WAV_D0;
 	W_WAV_D1 <= I_WAV_D1;
 	W_WAV_D2 <= I_WAV_D2;
-	mix1     <= mix0(7 downto 0) + W_WAV_D2 ; 
+	mix1     <= mix0(7 downto 0) + W_WAV_D2 & '0'; 
 
 	process(I_CLK1, I_RSTn)
 	begin
@@ -200,7 +200,7 @@ begin
 	O_WAV_A2 <= "010"   & effect_ad;
 
 --   sound mix
-	mix0 <= W_WAV_D0 + W_WAV_D1;
+	mix0 <= W_WAV_D0 + W_WAV_D1 & '0';
 
 	process(I_CLK1)
 	begin

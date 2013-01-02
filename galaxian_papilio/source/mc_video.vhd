@@ -289,7 +289,7 @@ begin
 	end process;
 
 --   Parts  4,5N
-	W_45N_Q <= (W_VF_CNT + W_H_POSI) ;
+	W_45N_Q <= (W_VF_CNT + W_H_POSI) & '0';
 	W_3D    <= '0' when W_45N_Q(7 downto 0) = x"ff" else '1'; 
 
 	process(W_VPLn, I_V_BLn)

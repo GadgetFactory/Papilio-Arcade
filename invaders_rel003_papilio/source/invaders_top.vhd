@@ -285,7 +285,7 @@ begin
   p_input_registers : process
 	begin
     wait until rising_edge(Clk);
-	  if Reset = '1' then
+	  if I_RESET = '1' then
 			Buttons <= (others => '0');
 		end if;
 		if Rst_n_s = '0' then
