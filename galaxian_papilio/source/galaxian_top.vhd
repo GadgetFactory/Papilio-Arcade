@@ -47,6 +47,13 @@ entity galaxian_top is
 end;
 
 architecture RTL of galaxian_top is
+	--
+	-- 	HARDWARE SELECTOR
+	--		TRUE = galaxian hardware
+	-- 	FALSE = mrdo's nightmare
+	--
+	constant HWSEL_GALAXIAN : 	boolean := TRUE;
+
 	--    CPU ADDRESS BUS
 	signal W_A                : std_logic_vector(15 downto 0) := (others => '0');
 	--    CPU IF
@@ -476,11 +483,11 @@ begin
 	);
 
 --------- BUTTONS       ---------------------
-	U1 <= not I_SW(0);
-	D1 <= not I_SW(1);
-	L1 <= not I_SW(2);
-	R1 <= not I_SW(3);
-	J1 <= not I_SW(4);
+	U1 <= not I_SW(0) when HWSEL_GALAXIAN  else I_SW(0);
+   D1 <= not I_SW(1) when HWSEL_GALAXIAN  else I_SW(1);
+   L1 <= not I_SW(2) when HWSEL_GALAXIAN  else I_SW(3);
+   R1 <= not I_SW(3) when HWSEL_GALAXIAN  else I_SW(2);
+   J1 <= not I_SW(4) when HWSEL_GALAXIAN  else I_SW(4);
 	
 	S1 <= not I_SW(5);
 	S2 <= not I_SW(7);
@@ -496,8 +503,8 @@ begin
 
 	U2 <= U1;
 	D2 <= D1;
-	L2 <= L1;
-	R2 <= R1;
+	L2 <= L1 when HWSEL_GALAXIAN  else U1;
+	R2 <= R1 when HWSEL_GALAXIAN  else D1;
 	J2 <= J1;
 
 -------- VIDEO  -----------------------------
