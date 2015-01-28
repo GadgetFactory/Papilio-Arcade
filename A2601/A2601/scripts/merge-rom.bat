@@ -2,13 +2,13 @@ rem @echo off
 
 
 set rom_path_src=..\roms
-set rom_path=..\build
+set rom_path=..\bitfiles
 set romgen_path=..\romgen_source
 set temp_path=tmp
-set bit_file=a2601noflash
+set bit_file=a2601noflash-nobank
 set bmm_file=a2601_bd.bmm
 set bit_file_path=..\build
-set output_bitfile=%~n1_a2601noflash.bit
+set output_bitfile=%~n1_a2601noflash-nobank.bit
 set data2mem=bin\data2mem.exe
 
 REM concatenate consecutive ROM regions

@@ -1,7 +1,7 @@
 // BMM LOC annotation file.
 //
-// Release 14.1 -  P.28xd, build 2.8 Mar 16, 2012
-// Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+// Release 14.6 -  P.20131013, build 3.0.10 Apr 3, 2013
+// Copyright (c) 1995-2015 Xilinx, Inc.  All rights reserved.
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ ADDRESS_MAP avrmap PPC405 0
 
     ADDRESS_SPACE rom_code RAMB16 [0x00000000:0x00003FFF]
         BUS_BLOCK
-            Inst_cart_rom/rom0.inst RAMB16 [7:0] [0:2047] PLACED = X1Y7;
+            Inst_cart_rom/rom0.inst RAMB16 [7:0] [0:2047] PLACED = X1Y9;
         END_BUS_BLOCK;
 
         BUS_BLOCK
@@ -28,7 +28,7 @@ ADDRESS_MAP avrmap PPC405 0
         END_BUS_BLOCK;
 
         BUS_BLOCK
-            Inst_cart_rom/rom2.inst RAMB16 [7:0] [4096:6143] PLACED = X1Y8;
+            Inst_cart_rom/rom2.inst RAMB16 [7:0] [4096:6143] PLACED = X1Y4;
         END_BUS_BLOCK;
 
         BUS_BLOCK
@@ -40,15 +40,15 @@ ADDRESS_MAP avrmap PPC405 0
         END_BUS_BLOCK;
 
         BUS_BLOCK
-            Inst_cart_rom/rom5.inst RAMB16 [7:0] [10240:12287] PLACED = X1Y9;
+            Inst_cart_rom/rom5.inst RAMB16 [7:0] [10240:12287] PLACED = X1Y8;
         END_BUS_BLOCK;
 
         BUS_BLOCK
-            Inst_cart_rom/rom6.inst RAMB16 [7:0] [12288:14335] PLACED = X1Y3;
+            Inst_cart_rom/rom6.inst RAMB16 [7:0] [12288:14335] PLACED = X1Y6;
         END_BUS_BLOCK;
 
         BUS_BLOCK
-            Inst_cart_rom/rom7.inst RAMB16 [7:0] [14336:16383] PLACED = X1Y4;
+            Inst_cart_rom/rom7.inst RAMB16 [7:0] [14336:16383] PLACED = X1Y7;
         END_BUS_BLOCK;
     END_ADDRESS_SPACE;
 
