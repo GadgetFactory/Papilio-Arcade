@@ -5,9 +5,9 @@ set rom_path_src=..\roms
 set rom_path=..\bitfiles
 set romgen_path=..\romgen_source
 set temp_path=tmp
-set bit_file=a2601noflash-f4
+set bit_file=a2601-f4
 set bmm_file=%bit_file%_bd.bmm
-set bit_file_path=..\build
+set bit_file_path=..\bitfiles
 set output_bitfile=%~n1_%bit_file%.bit
 set data2mem=bin\data2mem.exe
 
