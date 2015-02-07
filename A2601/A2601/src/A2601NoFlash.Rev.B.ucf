@@ -23,7 +23,7 @@ NET O_VIDEO_R(2)						LOC = "P3" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST 
 NET O_VIDEO_R(1)						LOC = "P2" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
 #NET O_VIDEO_R(0)                LOC = "P98" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
 NET O_AUDIO_L  						LOC = "P84" | IOSTANDARD = LVTTL  | DRIVE = 4 ;
-NET O_AUDIO_R      					LOC="P86"  | IOSTANDARD=LVTTL | DRIVE=4          # A15
+NET O_AUDIO_R      					LOC="P86"  | IOSTANDARD=LVTTL | DRIVE=4  ;        # A15
 
 NET "p_a"  LOC = "P9" | IOSTANDARD = LVTTL | PULLUP = TRUE;													# Fire
 NET "p_d"  LOC = "P10" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Down
