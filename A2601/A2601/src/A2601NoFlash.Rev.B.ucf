@@ -19,10 +19,11 @@ NET O_VIDEO_B(2)                LOC = "P78"  | IOSTANDARD = LVTTL | DRIVE = 8 | 
 NET O_VIDEO_G(2)                LOC = "P63" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
 NET O_VIDEO_G(1)                LOC = "P66" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
 #NET O_VIDEO_G(0)                LOC = "P68" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
-NET O_VIDEO_R(2)                LOC = "P3" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
-NET O_VIDEO_R(1)                LOC = "P2" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(2)						LOC = "P3" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(1)						LOC = "P2" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
 #NET O_VIDEO_R(0)                LOC = "P98" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
-NET "audio"  LOC = "P84" | IOSTANDARD = LVTTL  | DRIVE = 4 ;
+NET O_AUDIO_L  						LOC = "P84" | IOSTANDARD = LVTTL  | DRIVE = 4 ;
+NET O_AUDIO_R      					LOC="P86"  | IOSTANDARD=LVTTL | DRIVE=4          # A15
 
 NET "p_a"  LOC = "P9" | IOSTANDARD = LVTTL | PULLUP = TRUE;													# Fire
 NET "p_d"  LOC = "P10" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Down
@@ -41,7 +42,10 @@ NET LED(2) LOC = "P35" | IOSTANDARD = LVTTL; 																	# select sw indica
 #NET LED(1)			         LOC = "P53"  | IOSTANDARD = LVTTL;#
 #NET LED(2)			         LOC = "P40"  | IOSTANDARD = LVTTL;#
 #NET LED(3)			         LOC = "P35"  | IOSTANDARD = LVTTL;#
-
+#NET PS2DAT2        LOC="P70"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # A12 # not in use yet
+#NET PS2CLK2        LOC="P79"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # A13 # not in use yet
+NET PS2DAT1        LOC="P91"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # C0
+NET PS2CLK1        LOC="P92"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # C1
 NET "p2_a"  LOC = "P32" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Fire
 NET "p2_d"  LOC = "P25" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Down
 NET "p2_l"  LOC = "P22" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Left
