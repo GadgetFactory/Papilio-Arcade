@@ -71,12 +71,6 @@ end A2601NoFlash;
 
 architecture arch of A2601NoFlash is
 
-	component dac is
-		port(DACout: 	out std_logic;
-			DACin:	in std_logic_vector(4 downto 0);
-			Clk:		in std_logic;
-			Reset:	in std_logic);
-		end component;	
 	--
 	-- bank switch 
 	subtype bss_type is std_logic_vector(2 downto 0);
@@ -90,7 +84,7 @@ architecture arch of A2601NoFlash is
 	
 	-- bank switch and superchip enable options.
 	
-	signal bss: bss_type := BANKF8; 	--bank switching method
+	signal bss: bss_type := BANK00; 	--bank switching method
 	signal sc: std_logic := '0';		--superchip enabled or not
 	 
 	 
@@ -163,7 +157,6 @@ architecture arch of A2601NoFlash is
 begin
 	  
 
-	 
 
 	u_clocks : entity work.PACMAN_CLOCKS
 		port map (
@@ -182,17 +175,17 @@ begin
 	ms_A2601: entity work.A2601
 		port map(vid_clk, rst, cpu_d, cpu_a, cpu_r,pa, pb, inpt4, inpt5, colu, csyn, vsyn, hsyn, rgbx2, cv, au0, au1, av0, av1, ph0, ph1);
   
-	O_VIDEO_R(3 downto 1) <= rgbx2(23 downto 21) ;
-	
-	O_VIDEO_G(3 downto 1) <= rgbx2(15 downto 13) ;
-	
-	O_VIDEO_B(3 downto 2) <= rgbx2(7 downto 6) ;	
-	
+	O_VIDEO_R(3 downto 1) <= rgbx2(23 downto 21);
+	O_VIDEO_R(0) <= '0';
+	O_VIDEO_G(3 downto 1) <= rgbx2(15 downto 13);
+	O_VIDEO_G(0) <= '0';
+	O_VIDEO_B(3 downto 2) <= rgbx2(7 downto 6);	
+	O_VIDEO_B(1 downto 0) <= "00";
 	O_HSYNC   <= hsyn;
 	O_VSYNC   <= vsyn;	
 	
 	
-	dac_inst: dac 
+	dac_inst: entity work.dac 
 		port map(audio, au, vid_clk, '0');	
 
 		auv0 <= ("0" & unsigned(av0)) when (au0 = '1') else "00000";
