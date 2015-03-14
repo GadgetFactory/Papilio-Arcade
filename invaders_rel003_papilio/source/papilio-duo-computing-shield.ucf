@@ -1,0 +1,81 @@
+# Papilio DUO invaders User Constraints File
+
+
+###########################################################
+# UCF File starts here, uncomment lines below as required #
+###########################################################
+## Prohibit the automatic placement of pins that are connected to VCC or GND for configuration.
+CONFIG PROHIBIT=P144;
+CONFIG PROHIBIT=P69;
+CONFIG PROHIBIT=P60;
+
+NET OSC_IN						LOC = "P94"  | IOSTANDARD = LVTTL | PERIOD = 31.25ns ; # 32.00 MHz oscillator
+
+
+NET O_AUDIO_L					LOC = "P88"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; #
+NET O_AUDIO_R					LOC = "P85"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; #
+
+#Atari 2600 Joystick Diagram
+#\ o5 o4 o3 o2 o1/
+# \ o9 o8 o7 o6 /
+#  \___________/
+#
+#Pin Joystick 
+#
+#1   Forward  
+#2   Back    
+#3   Left    
+#4   Right   
+#5   -       
+#6   Button 1
+#7   +5V *    
+#8   GND     
+#9   -
+#Atari 2600 Joystick Diagram
+
+#Joystick A																														#Purpose		#Arcade MegaWing Location
+NET I_BUTTON(0)				LOC = "P134"   | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# up			pin 1 of DB9 Joystick A connector
+NET I_BUTTON(1)				LOC = "P132"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# down		pin 2 of DB9 Joystick A connector
+NET I_BUTTON(2)				LOC = "P127"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# left		pin 3 of DB9 Joystick A connector
+NET I_BUTTON(3)				LOC = "P126"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# right		pin 4 of DB9 Joystick A connector
+
+NET I_BUTTON(4)						LOC = "P133" 	 | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# fire/cred	pin 6 of DB9 Joystick A connector
+NET JOYSTICK_GND        	LOC = "P39"  | IOSTANDARD = LVTTL;# 												# GND 		pin 8 of DB9 Joystick A connector
+# small cheat as pin7 is wired to gnd on computing shield, we use led4 to avoid new top level
+
+#Joystick B																														#Purpose		#Arcade MegaWing Location
+#NET I_BUTTON(0)				LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# up			pin 1 of DB9 Joystick B connector
+#NET I_BUTTON(1)				LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# down		pin 2 of DB9 Joystick B connector
+#NET I_BUTTON(2)				LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# left		pin 3 of DB9 Joystick B connector
+#NET I_BUTTON(3)				LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# right		pin 4 of DB9 Joystick B connector
+##NET Joystick_5				LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# ?			pin 5 of DB9 Joystick B connector
+#NET I_SW(0)					LOC = "XX"	 | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# fire/cred	pin 6 of DB9 Joystick B connector
+#NET JOYSTICK_GND		      LOC = "PXX"  | IOSTANDARD = LVTTL;#													# GND 		pin 8 of DB9 Joystick B connector
+##NET Joystick_9				LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLUP ; 	# ?			pin 9 of DB9 Joystick B connector
+
+#Push buttons																													#Purpose		#Arcade MegaWing Location
+NET I_BUTTON(5)					LOC = "P100"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# start 2			RIGHT button
+#NET I_BUTTON(6)						LOC = "P105"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# coin 1/credit	UP button
+NET I_BUTTON(6)						LOC = "P101"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# coin 2/credit	DOWN button
+NET I_BUTTON(7)						LOC = "P111"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;				# start 1			LEFT button
+
+NET I_RESET						LOC = "P102"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST | PULLDOWN ; # reset
+
+# Video Section
+NET O_HSYNC                     LOC = "P99" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VSYNC                     LOC = "P97" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+# original bits
+NET O_VIDEO_R                LOC = "P57" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_G                LOC = "P59" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_B                LOC = "P79" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+# extra bits
+# NET O_VIDEO_B(2)                LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_B(1)                LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_B(0)                LOC = "PXX"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_G(2)                LOC = "PXX" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_G(1)                LOC = "PXX" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_G(0)                LOC = "PXX" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_R(2)                LOC = "PXX" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_R(1)                LOC = "PXX" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+# NET O_VIDEO_R(0)                LOC = "PXX" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+##########End of Section for Papilio DUO computing shield ###############################################
