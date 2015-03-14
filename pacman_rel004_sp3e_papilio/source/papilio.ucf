@@ -76,7 +76,7 @@ NET "JOYSTICK_B_GND"          	  LOC = "P18"  | IOSTANDARD = LVTTL | PULLDOWN; #
 
 # No real use for the LED's
 #NET O_LED(3)                    LOC = "P35" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
-NET O_LED(2)                    LOC = "P40" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+#NET O_LED(2)                    LOC = "P40" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
 NET O_LED(1)                    LOC = "P53" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;		# P2 Start Lamp
 NET O_LED(0)                    LOC = "P57" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 	# P1 Start Lamp
 

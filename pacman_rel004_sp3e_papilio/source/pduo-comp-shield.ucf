@@ -1,0 +1,56 @@
+# Pacman UCF file for the Papilio DUO computing shield
+# 
+
+NET OSC_IN           LOC="P94" | IOSTANDARD=LVTTL | PERIOD=31.25ns;               # CLK
+
+##########Uncomment this section for the Papilio Arcade MegaWing ##########################################
+# original bits
+NET O_VIDEO_R(3)                LOC = "P57" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_G(3)                LOC = "P59" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_B(3)                LOC = "P79" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+# extra bits
+NET O_VIDEO_B(2)                LOC = "P81"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_B(1)                LOC = "P83"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_B(0)                LOC = "P93"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(2)                LOC = "P62" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(1)                LOC = "P67" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_G(0)                LOC = "P75" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_R(2)                LOC = "P55" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(1)                LOC = "P50" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(0)                LOC = "P47" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+
+NET O_HSYNC                     LOC = "P99" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VSYNC                     LOC = "P97" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+
+# Tactile Pushbuttons
+NET I_SW(3)                     LOC = "P100" | IOSTANDARD = LVTTL;	#	Right Pushbutton - Start 2
+NET I_SW(2)                     LOC = "P101" | IOSTANDARD = LVTTL;	#	Down Pushbutton - Coin 1
+NET I_SW(1)                     LOC = "P105" | IOSTANDARD = LVTTL;	#	Up Pushbutton - Coin 2
+NET I_SW(0)                     LOC = "P111" | IOSTANDARD = LVTTL;	#	Left Pushbutton - Start 1
+
+# Papilio Arcade MegaWing - Joystick A
+NET "I_JOYSTICK_A(0)"               LOC = "P134"  | IOSTANDARD = LVTTL | PULLUP ; # 	Up
+NET "I_JOYSTICK_A(2)"               LOC = "P127" | IOSTANDARD = LVTTL | PULLUP ; # 	Left	
+NET "I_JOYSTICK_A(3)"               LOC = "P126" | IOSTANDARD = LVTTL | PULLUP ; # 	Right	
+NET "I_JOYSTICK_A(1)"               LOC = "P132" | IOSTANDARD = LVTTL | PULLUP ; # 	Down 	
+NET "I_JOYSTICK_A(4)"               LOC = "P133" | IOSTANDARD = LVTTL | PULLUP ; # 	Fire 
+NET "JOYSTICK_A_GND"              LOC = "P39"  | IOSTANDARD = LVTTL | PULLDOWN; # 	GND
+# cheating a bit, computing shield has gnd hardwired so i'm using led4 to avoid a new top file
+
+# Papilio Arcade MegaWing - Joystick B
+NET "I_JOYSTICK_B(0)"               LOC = "P84"  | IOSTANDARD = LVTTL | PULLUP ; #  Up
+NET "I_JOYSTICK_B(2)"               LOC = "P92" | IOSTANDARD = LVTTL | PULLUP ; # 	Left	
+NET "I_JOYSTICK_B(3)"               LOC = "P95" | IOSTANDARD = LVTTL | PULLUP ; # 	Right
+NET "I_JOYSTICK_B(1)"               LOC = "P87" | IOSTANDARD = LVTTL | PULLUP ; # 	Down
+NET "I_JOYSTICK_B(4)"               LOC = "P82" | IOSTANDARD = LVTTL | PULLUP ; # 	Fire
+NET "JOYSTICK_B_GND"          	  LOC = "P48"  | IOSTANDARD = LVTTL | PULLDOWN; # 	GND
+
+# No real use for the LED's
+NET O_LED(1)                    LOC = "P51" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;		# P2 Start Lamp
+NET O_LED(0)                    LOC = "P56" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 	# P1 Start Lamp
+
+NET I_RESET                     LOC = "P102" | IOSTANDARD = LVTTL | PULLDOWN ; # 
+
+NET O_AUDIO_L                   LOC = "P88"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;	#
+NET O_AUDIO_R                   LOC = "P85"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;	#
+##########End of Section for Papilio DUO computing shield ###############################################
