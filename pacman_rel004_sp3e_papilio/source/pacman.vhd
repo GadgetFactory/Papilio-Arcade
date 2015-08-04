@@ -79,7 +79,11 @@ end;
 
 architecture RTL of PACMAN is
 
-    signal I_RESET_L        : std_logic;
+
+	constant HWSEL_PACMANICMINERMAN : boolean := false ; -- p2 joystick right used for jump, collides with default config.
+																			
+    
+	 signal I_RESET_L        : std_logic;
     signal reset            : std_logic;
     signal clk_ref          : std_logic;
     signal clk              : std_logic;
@@ -152,12 +156,13 @@ architecture RTL of PACMAN is
     signal freeze           : std_logic;
 
     -- ip registers
-    signal button_in        : std_logic_vector(8 downto 0);
-    signal button_debounced : std_logic_vector(8 downto 0);
+    signal button_in        : std_logic_vector(13 downto 0);
+    signal button_debounced : std_logic_vector(13 downto 0);
     signal in0_reg          : std_logic_vector(7 downto 0);
     signal in1_reg          : std_logic_vector(7 downto 0);
     signal dipsw_reg        : std_logic_vector(7 downto 0);
     signal joystick_reg     : std_logic_vector(4 downto 0);
+	 signal joystick_reg2     : std_logic_vector(4 downto 0);
 
     -- scan doubler signals
     signal video_r          : std_logic_vector(2 downto 0);
@@ -180,7 +185,8 @@ begin
   I_RESET_L <= not I_RESET;
 --  I_RESET_L <= '1';
   
-  joystick_reg <= I_JOYSTICK_A and I_JOYSTICK_B;
+  joystick_reg <= I_JOYSTICK_A;
+  joystick_reg2 <=  I_JOYSTICK_B;
   JOYSTICK_A_GND <= '0';
   JOYSTICK_B_GND <= '0';
   
@@ -524,7 +530,7 @@ begin
 
 	O_LED(0) <= control_reg(4);	-- P1 Start Lamp
 	O_LED(1) <= control_reg(5);	-- P2 Start Lamp	
-	O_LED(2) <= control_reg(3);	-- Flipped
+	-- O_LED(2) <= control_reg(3);	-- Flipped 
 
   p_control_reg : process
     variable ena : std_logic_vector(7 downto 0);
@@ -745,10 +751,11 @@ begin
 
   button_in(8 downto 5) <= I_SW(3 downto 0);
   button_in(4 downto 0) <= joystick_reg(4 downto 0);
-
+  button_in(13 downto 9) <= joystick_reg2(4 downto 0);
+  
   u_debounce : entity work.PACMAN_DEBOUNCE
   generic map (
-    G_WIDTH => 9
+    G_WIDTH => 14
     )
   port map (
     I_BUTTON => button_in,
@@ -784,11 +791,15 @@ begin
       in1_reg(7) <= '1'; 							-- table 1-upright 0-cocktail
       in1_reg(6) <= not button_debounced(8); -- start2		RIGHT PushButton
       in1_reg(5) <= not button_debounced(5); -- start1		LEFT PushButton
-      in1_reg(4) <= button_debounced(4);		-- test and fire	
-      in1_reg(3) <= button_debounced(1);		-- p2 down
-      in1_reg(2) <= button_debounced(3); 		-- p2 right
-      in1_reg(1) <= button_debounced(2); 		-- p2 left
-      in1_reg(0) <= button_debounced(0); 		-- p2 up		
+      in1_reg(4) <= button_debounced(13);		-- test and fire	
+      in1_reg(3) <= button_debounced(10);		-- p2 down
+		if HWSEL_PACMANICMINERMAN = true		then		-- jump for pacmmm else 
+			in1_reg(2) <= button_debounced(4);
+		else
+			in1_reg(2) <= button_debounced(12) ; 			-- p2 right
+		end if ;
+      in1_reg(1) <= button_debounced(11); 	-- p2 left
+      in1_reg(0) <= button_debounced(9); 		-- p2 up		
 
       -- on is low
       freeze <= '0';

@@ -1,0 +1,65 @@
+
+NET "O_HSYNC"  LOC = "P95" | IOSTANDARD = LVTTL ; 
+NET "O_VSYNC"  LOC = "P94" | IOSTANDARD = LVTTL ; 
+#NET "clk"  LOC = "P89" | IOSTANDARD = LVCMOS33 |  CLOCK_DEDICATED_ROUTE = FALSE;
+NET "clk" LOC = "P89" | IOSTANDARD = LVTTL | PERIOD = 31.25ns ;
+
+
+NET "res"  LOC = "P67" | IOSTANDARD = LVTTL  | PULLDOWN ; #reset
+
+
+### original bits
+NET O_VIDEO_R(3)                LOC = "P4" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_G(3)                LOC = "P61" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+NET O_VIDEO_B(3)                LOC = "P71" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ;
+# extra bits
+NET O_VIDEO_B(2)                LOC = "P78"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_B(1)                LOC = "P83"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_B(0)                LOC = "P85"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(2)                LOC = "P63" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_G(1)                LOC = "P66" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_G(0)                LOC = "P68" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(2)						LOC = "P3" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_VIDEO_R(1)						LOC = "P2" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+#NET O_VIDEO_R(0)                LOC = "P98" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST ; 
+NET O_AUDIO_L  						LOC = "P84" | IOSTANDARD = LVTTL  | DRIVE = 4 ;
+NET O_AUDIO_R      					LOC="P86"  | IOSTANDARD=LVTTL | DRIVE=4  ;        # A15
+
+NET "p_a"  LOC = "P9" | IOSTANDARD = LVTTL | PULLUP = TRUE;													# Fire
+NET "p_d"  LOC = "P10" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Down
+NET "p_l"  LOC = "P11" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Left
+NET "p_r"  LOC = "P15" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# Right
+NET "p_u"  LOC = "P5" | IOSTANDARD = LVTTL | PULLUP = TRUE;													# Up
+
+NET JOYSTICK_GND        	LOC = "P12"  | IOSTANDARD = LVTTL;# 											# GND 		pin 8 of DB9 Joystick A connector
+
+NET "p_bs"  LOC = "P57" | IOSTANDARD = LVTTL;																	# led0
+NET LED(0) LOC = "P53" | IOSTANDARD = LVTTL;																	# switch1 indicator - led1
+NET LED(1) LOC = "P40" | IOSTANDARD = LVTTL;																	# switch2 indicator - led2
+NET LED(2) LOC = "P35" | IOSTANDARD = LVTTL; 																	# select sw indicator - led3
+#LEDs
+#NET LED(0)			         LOC = "P57"  | IOSTANDARD = LVTTL;#
+#NET LED(1)			         LOC = "P53"  | IOSTANDARD = LVTTL;#
+#NET LED(2)			         LOC = "P40"  | IOSTANDARD = LVTTL;#
+#NET LED(3)			         LOC = "P35"  | IOSTANDARD = LVTTL;#
+#NET PS2DAT2        LOC="P70"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # A12 # not in use yet
+#NET PS2CLK2        LOC="P79"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # A13 # not in use yet
+NET PS2DAT1        LOC="P91"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # C0
+NET PS2CLK1        LOC="P92"  | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # C1
+NET "p2_a"  LOC = "P32" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Fire
+NET "p2_d"  LOC = "P25" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Down
+NET "p2_l"  LOC = "P22" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Left
+NET "p2_r"  LOC = "P23" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Right
+NET "p2_u"  LOC = "P34" | IOSTANDARD = LVTTL | PULLUP = TRUE;												# B Up
+NET JOYSTICK2_GND        	LOC = "P18"  | IOSTANDARD = LVTTL;# 											# GND 		pin 18 of DB9 Joystick B1 connector
+
+NET "p_s"  LOC = "P54" | IOSTANDARD = LVTTL;																		# Up Pushbutton 
+NET I_SW(0) LOC = "P58" | IOSTANDARD = LVTTL;																		# sw1 toggle - left pushbutton
+NET I_SW(1) LOC = "P36" | IOSTANDARD = LVTTL;																		# sw2 toggle - right pushbutton
+NET I_SW(2) LOC = "P41" | IOSTANDARD = LVTTL;																		# select toggle - down pb
+
+#Push buttons																													#Purpose		#Arcade MegaWing Location
+#NET I_SW(3)						LOC = "P36"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# start 2	RIGHT button
+##NET I_SW(2)					LOC = "P54"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# unused		UP button
+#NET I_SW(1)						LOC = "P41"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;  			# credit		DOWN button
+#NET I_SW(0)						LOC = "P58"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = FAST  ;				# start 1	LEFT button

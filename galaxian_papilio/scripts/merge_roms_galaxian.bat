@@ -17,8 +17,8 @@ set romgen_path=..\romgen_source
 set data2mem=..\scripts\bin\data2mem
 
 REM Bit file to merge the ROMs into. Uncomment the bit file for the Papilio Arcade board you are using.
-REM This is for the papilio Logic with LX9 chip
-REM set bit_file=pacman_hardware_papilio_logic_lx9
+REM This is for the papilio pro with Arcade Megawing
+REM set bit_file=galaxian_hardware_papilio_pro_lx9
 REM this is for the Papilio One with 500K chip
 set bit_file=galaxian_hardware_p1_500K
 
