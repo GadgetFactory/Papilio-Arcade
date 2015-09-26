@@ -20,19 +20,19 @@ ADDRESS_MAP avrmap PPC405 0
 
     ADDRESS_SPACE rom_code RAMB16 [0x00000000:0x00001FFF]
         BUS_BLOCK
-            u_rom/rom0.inst RAMB16 [7:0] [0:2047] PLACED = X1Y22;
+            u_rom/rom0.inst RAMB16 [7:0] [0:2047] PLACED = X1Y24;
         END_BUS_BLOCK;
 
         BUS_BLOCK
-            u_rom/rom1.inst RAMB16 [7:0] [2048:4095] PLACED = X1Y20;
+            u_rom/rom1.inst RAMB16 [7:0] [2048:4095] PLACED = X1Y18;
         END_BUS_BLOCK;
 
         BUS_BLOCK
-            u_rom/rom2.inst RAMB16 [7:0] [4096:6143] PLACED = X1Y26;
+            u_rom/rom2.inst RAMB16 [7:0] [4096:6143] PLACED = X1Y22;
         END_BUS_BLOCK;
 
         BUS_BLOCK
-            u_rom/rom3.inst RAMB16 [7:0] [6144:8191] PLACED = X1Y24;
+            u_rom/rom3.inst RAMB16 [7:0] [6144:8191] PLACED = X1Y20;
         END_BUS_BLOCK;
     END_ADDRESS_SPACE;
 

@@ -399,8 +399,8 @@ begin
   u_audio : entity work.invaders_audio
 	port map (
 	  Clk => Clk,
-	  S1  => SoundCtrl3,
-	  S2  => SoundCtrl5,
+	  P3  => SoundCtrl3,
+	  P5  => SoundCtrl5,
 	  Aud => Audio
 	  );
 
